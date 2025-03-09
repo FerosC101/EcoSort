@@ -1,0 +1,66 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="26">
+            <item index="0" class="java.lang.String" itemvalue="showPaymentOptions(event)" />
+            <item index="1" class="java.lang.String" itemvalue="showSessionSelection(" />
+            <item index="2" class="java.lang.String" itemvalue="plan.plan_name" />
+            <item index="3" class="java.lang.String" itemvalue="{{" />
+            <item index="4" class="java.lang.String" itemvalue="}}" />
+            <item index="5" class="java.lang.String" itemvalue="modal-close" />
+            <item index="6" class="java.lang.String" itemvalue="registerForCompetition(" />
+            <item index="7" class="java.lang.String" itemvalue="competition.competition_id" />
+            <item index="8" class="java.lang.String" itemvalue="href" />
+            <item index="9" class="java.lang.String" itemvalue="payment_session" />
+            <item index="10" class="java.lang.String" itemvalue="window.location.href" />
+            <item index="11" class="java.lang.String" itemvalue="url_for(" />
+            <item index="12" class="java.lang.String" itemvalue="payment_session_type" />
+            <item index="13" class="java.lang.String" itemvalue="generate_payment_url(plan.plan_id)" />
+            <item index="14" class="java.lang.String" itemvalue="}}`" />
+            <item index="15" class="java.lang.String" itemvalue="generate_payment_url(plan.training_plan_id)" />
+            <item index="16" class="java.lang.String" itemvalue="location.href" />
+            <item index="17" class="java.lang.String" itemvalue="athlete_id" />
+            <item index="18" class="java.lang.String" itemvalue="}}," />
+            <item index="19" class="java.lang.String" itemvalue="plan.training_plan_id" />
+            <item index="20" class="java.lang.String" itemvalue="registerForPlan(" />
+            <item index="21" class="java.lang.String" itemvalue="console.log(" />
+            <item index="22" class="java.lang.String" itemvalue="session_type" />
+            <item index="23" class="java.lang.String" itemvalue="{%" />
+            <item index="24" class="java.lang.String" itemvalue="button" />
+            <item index="25" class="java.lang.String" itemvalue="register_competition" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="body" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N801" />
+          <option value="N802" />
+          <option value="N803" />
+          <option value="N806" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
