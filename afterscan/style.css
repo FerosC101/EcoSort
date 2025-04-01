@@ -1,0 +1,387 @@
+.after-scan,
+.after-scan * {
+  box-sizing: border-box;
+}
+.after-scan {
+  height: 3240px;
+  position: relative;
+}
+body {
+  background-color: white;
+}
+
+.container {
+  width: 100%; 
+  height: 100vh;
+  display: grid;
+  
+}
+/* NAVIGATION BAR */
+
+header {
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #4A6B65;
+  margin-top: 25px;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-bottom: 0px;
+  box-shadow: inset;
+  height: 50px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+}
+
+#logo {
+  width: 100px; 
+  height: auto;
+  margin-left: 20px;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 18px;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.nav-links a:hover {
+  background-color: #e3e3e3;
+}
+		
+.GreenRectangleBG {
+  background: #4d774e;
+  width: 400px;
+  height: 800px;
+  
+  top: 0px;
+  border-radius: 25px;
+  margin-top: -125px;
+  display: absolute;
+  grid-area: right;
+  
+}
+
+.ctnImagePlaceholder {
+  width: 100%; 
+  height: 100vh;
+  display: grid;
+  
+}
+
+.ImageBox {
+  background: #9dc88d;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: #ffffff;
+  border-width: 10px;
+  width: 500px;
+  height: 500px;
+  right: 0px;
+  margin-left: 250px;
+  margin-top: -650px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  grid-area: right;
+  z-index: 1;
+}
+
+.containerYellow {
+  width: 100%; 
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.YellowBox {
+  background: #f1b24a;
+  width: 1920px;
+  height: 394px;
+  position: relative;
+  display: absolute;
+  left: 0px;
+  top: 1228px;
+}
+
+.rectangle-159 {
+  background: #9dc88d;
+  border-radius: 61px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1px;
+  width: 356px;
+  height: 114px;
+  position: absolute;
+  left: 110px;
+  top: 914px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.waste-name {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins-ExtraBold", sans-serif;
+  font-size: 100px;
+  font-weight: 800;
+  position: absolute;
+  left: 89px;
+  top: 330px;
+  width: 763px;
+  height: 134px;
+}
+.this-waste-is-category-ganto-ganyan-idk-info-about-the-waste-siguro-kemerut-sana-manalo-na-kami-sa-codm-lenard-pabuhat-naman-oh-im-just-putting-random-stuff-here-para-magmukhang-paragraph {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  position: absolute;
+  left: 107px;
+  top: 477px;
+  width: 890px;
+  height: 285px;
+}
+.wrong-waste-scan-again {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins-Regular", sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  position: absolute;
+  left: 110px;
+  top: 848px;
+  width: 514px;
+  height: 53px;
+}
+.scan2 {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Poppins-Black", sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  position: absolute;
+  left: 163px;
+  top: 926px;
+  width: 279px;
+  height: 114px;
+}
+.waste-pic {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins-Black", sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  position: absolute;
+  left: 1193px;
+  top: 510px;
+  width: 552px;
+  height: 128px;
+}
+.right-arrow {
+  width: 43px;
+  height: 43px;
+  position: absolute;
+  left: 378px;
+  top: 949px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.group-43 {
+  position: absolute;
+  inset: 0;
+}
+.biodegradable {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  position: absolute;
+  left: 105px;
+  top: 1460px;
+  width: 316px;
+  height: 61px;
+}
+.BiodegradableIcon {
+  width: 125px;
+  height: 125px;
+  position: absolute;
+  left: 200px;
+  top: 1330px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.group-46 {
+  position: absolute;
+  inset: 0;
+}
+.recyclable {
+  color: #ffffff;
+  text-align: left;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  position: absolute;
+  left: 1562px;
+  top: 1461px;
+}
+.triangular-arrows-sign-for-recycle-1 {
+  width: 134px;
+  height: 134px;
+  position: absolute;
+  left: 1606px;
+  top: 1316px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.rectangle-124 {
+  background: #ffffff;
+  border-radius: 43px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 10px;
+  width: 27.71%;
+  height: 23.46%;
+  position: absolute;
+  right: 67.92%;
+  left: 4.38%;
+  bottom: 22.59%;
+  top: 53.95%;
+  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.rectangle-161 {
+  background: #ffffff;
+  border-radius: 43px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 10px;
+  width: 27.71%;
+  height: 23.46%;
+  position: absolute;
+  right: 36.15%;
+  left: 36.15%;
+  bottom: 22.56%;
+  top: 53.98%;
+  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.rectangle-162 {
+  background: #ffffff;
+  border-radius: 43px;
+  border-style: solid;
+  border-color: #d9d9d9;
+  border-width: 10px;
+  width: 27.71%;
+  height: 23.46%;
+  position: absolute;
+  right: 4.38%;
+  left: 67.92%;
+  bottom: 22.56%;
+  top: 53.98%;
+  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.group-49 {
+  position: absolute;
+  inset: 0;
+}
+.group-44 {
+  width: 388px;
+  height: 106px;
+  position: static;
+}
+.non-hazardous-material {
+  color: #ffffff;
+  text-align: center;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 500;
+  position: absolute;
+  left: 538px;
+  top: 1457px;
+  width: 388px;
+  height: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.group-48 {
+  width: 131px;
+  height: 131px;
+  position: static;
+}
+.biohazard-sign-1 {
+  width: 83.23px;
+  height: 83.23px;
+  position: absolute;
+  left: 690.88px;
+  top: 1336.99px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.stop-1 {
+  width: 131px;
+  height: 131px;
+  position: absolute;
+  left: 667px;
+  top: 1316px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.group-50 {
+  position: absolute;
+  inset: 0;
+}
+.group-45 {
+  width: 388px;
+  height: 221px;
+  position: static;
+}
+.non-combustible-material {
+  color: #ffffff;
+  text-align: center;
+  font-family: "Poppins-Medium", sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  font-weight: 500;
+  position: absolute;
+  left: 1043px;
+  top: 1461px;
+  width: 388px;
+  height: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fire-1-1 {
+  width: 88px;
+  height: 88px;
+  position: absolute;
+  left: 1193px;
+  top: 1346px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.stop-2 {
+  width: 131px;
+  height: 131px;
+  position: absolute;
+  left: 1173px;
+  top: 1324px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
