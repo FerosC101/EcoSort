@@ -27,55 +27,103 @@
     </nav>
 </header>
 
-  <div class="container">
-    <div class="GreenRectangleBG"></div>
+<div class="WasteContainer">
+
+  <div class="waste-name">Waste Name</div>
+  
+  <div class="Waste-Info"> this waste is [category]. ganto ganyan idk info about the waste siguro.
+    kemerut sana manalo na kami sa codm, lenard pabuhat naman oh. Im just
+    putting random stuff here para magmukhang paragraph. </div>
+
+    <div class="WrongWaste">Wrong waste? Scan again.</div>
+</div>
+
+<div class="ButtonContainer">
+  <a href ="#">
+  <button class="PillButton">
+    <div class="ScanAgain">Scan</div>
+    <img class= "RightArrow" src="icons\right-arrow.png">
+  </button>
+  </div>
+  </a>  
+</div>
+<div class="containerYellow">
+  <div class="YellowBox"></div>
+  <div class="CategoryContainer1">
+    <img class="BiodegradableIcon" src="icons/BiodegradableIcon.png" />
+    <div class="BioWord">Biodegradable</div>
   </div>
   
-  <div class="ctnImagePlaceholder">
-    <div class="ImageBox"></div>
+  <div class="CategoryContainer2">
+    <img class="NonRecyclableIcon" src="icons/non-recyclable.png" />
+    <div class="NonRecyWord">Non-Recyclable</div>
   </div>
   
-  <div class="containerYellow">
-    <div class="YellowBox"></div>
+  <div class="CategoryContainer3">
+    <img class="CombustibleIcon" src="icons/fire (1).png" />
+    <div class="ComWord">Combustible</div>
   </div>
+</div>
 
+<div class="GreenRectangleBG"></div>
+<div class="ImageBox"></div>
 
-  <div class="after-scan">
-    
-    <div class="rectangle-159"></div>
-    <div class="waste-name">Waste Name</div>
-    <div
-      class="this-waste-is-category-ganto-ganyan-idk-info-about-the-waste-siguro-kemerut-sana-manalo-na-kami-sa-codm-lenard-pabuhat-naman-oh-im-just-putting-random-stuff-here-para-magmukhang-paragraph"
-    >
-      this waste is [category]. ganto ganyan idk info about the waste siguro.
-      kemerut sana manalo na kami sa codm, lenard pabuhat naman oh. Im just
-      putting random stuff here para magmukhang paragraph.
+  <footer class ="footer">
+    <div class ="footer-container">
+        <!--Abous us Section-->
+        <div class="about">
+            <h3>About Us</h3>
+            <p>Miss na kita baby hindi ko na kaya sobrang saya ko na muli tayong magkasama</p>
+            <h3>Socials</h3>
+            <div class="social-icons">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+
+        <!--Quick Links-->
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
+        </div>
+
+        <!--Contact Us-->
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@gmail.com</p>
+            <p>Phone: 09123456789</p>
+            <p>Address: dito sa puso mo, batangas pilipinas</p>
+            <button  id="openForm">Send Direct Message</button>
+        </div>
     </div>
-    <div class="wrong-waste-scan-again">Wrong waste? Scan again.</div>
-    <div class="scan2">Scan</div>
-    
-    <img class="right-arrow-1" src="right-arrow.png" />
-    <div class="biodegradable">Biodegradable</div>
-    <img class="BiodegradableIcon" src="BiodegradableIcon.png" />
-    <div class="recyclable">Recyclable</div>
-    <img
-      class="triangular-arrows-sign-for-recycle-1"
-      src="triangular-arrows-sign-for-recycle.png"
-    />
-    <div class="rectangle-124"></div>
-    <div class="rectangle-161"></div>
-    <div class="rectangle-162"></div>
-    <div class="group-44">
-      <div class="non-hazardous-material">Non-Hazardous Material</div>
+    <p class="footer-text">© 2025 EcoCart. All rights reserved.</p>
+</footer>
+
+<!-- Popup Form-->
+ <div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span id="closeForm" class="close">&times;</span>
+        <h2>Send Us a Direct Message</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Message"></textarea>
+            <button type="submit">Send</button>
+        </form>
     </div>
-    <div class="group-48">
-      <img class="biohazard-sign-1" src="biohazard-sign.png" />
-      <img class="stop-1" src="stop.png" />
-    </div>
-    <div class="group-45">
-      <div class="non-combustible-material">Non-Combustible Material</div>
-      <img class="fire-1-1" src="fire(1).png" />
-    </div>
-    <img class="stop-2" src="stop.png" />
-  </div>
+ </div>
+
+ <script src="script.js"></script>
+
 </body> 
+
+
+
