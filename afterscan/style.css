@@ -1,4 +1,4 @@
-.after-scan,
+after-scan,
 .after-scan * {
   box-sizing: border-box;
 }
@@ -10,28 +10,19 @@ body {
   background-color: white;
 }
 
-.container {
-  width: 100%; 
-  height: 100vh;
-  display: grid;
-  
-}
 /* NAVIGATION BAR */
 
 header {
   justify-content: space-between;
   align-items: center;
   background-color: #f5f5f5;
-  border-bottom: 2px solid #4A6B65;
-  margin-top: 25px;
   margin-left: 75px;
   margin-right: 75px;
-  margin-bottom: 0px;
-  box-shadow: inset;
   height: 50px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   display: flex;
+  z-index: 10;
 }
 
 #logo {
@@ -64,123 +55,124 @@ header {
 .nav-links a:hover {
   background-color: #e3e3e3;
 }
-/* Nav-End*/
+
+/*Nav-End*/
 
 .GreenRectangleBG {
   background: #4d774e;
-  width: 400px;
-  height: 800px;
-  
-  top: 0px;
-  border-radius: 25px;
-  margin-top: -125px;
-  display: absolute;
-  grid-area: right;
-  
-}
-
-.ctnImagePlaceholder {
-  width: 100%; 
+  width: 30vw; /* Adjusted for responsiveness */
   height: 100vh;
-  display: grid;
-  
+  border-radius: 25px;
+  position: absolute;
+  top: -20px;
+  right: 0;
+  display: block;
 }
 
 .ImageBox {
   background: #9dc88d;
   border-radius: 40px;
-  border-style: solid;
-  border-color: #ffffff;
-  border-width: 10px;
-  width: 500px;
-  height: 500px;
-  right: 0px;
-  margin-left: 250px;
-  margin-top: -650px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  grid-area: right;
+  border: 10px solid #ffffff;
+  width: 40vw; /* Scales with viewport width */
+  height: 40vw; /* Scales with viewport width */
+  max-width: 500px; /* Prevents it from getting too large */
+  max-height: 500px;
+  min-width: 250px; /* Prevents it from getting too small */
+  min-height: 250px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  right: 10vw;
+  top: 20vh;
   z-index: 1;
 }
 
-.containerYellow {
-  width: 100%; 
-  height: 100vh;
+.waste-container {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 5vw; /* Responsive padding */
+  padding-top: 20vh; /* Ensures text is below navbar */
+  max-width: 90vw;
 }
 
-.YellowBox {
-  background: #f1b24a;
-  width: 1920px;
-  height: 394px;
-  position: relative;
-  display: absolute;
-  left: 0px;
-  top: 1228px;
+.waste-name {
+  width: 60vw; /* Scales with viewport width */
+  font-weight: 800;
+  font-family: "Poppins", Helvetica, sans-serif;
+  color: #000000;
+  font-size: clamp(2rem, 5vw, 4rem); /* Scales between 48px and 100px */
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin-top: 150px;
+  margin-left: 75px;
 }
 
-.rectangle-159 {
+.Waste-Info {
+  text-indent: 40px;
+  width: 45vw; /* Reduced width */
+  max-width: 750px; /* Scales with viewport width */
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #000000;
+  font-size: clamp(1rem, 2.5vw, 1.8rem);  /* Scales between 24px and 40px */
+  line-height: 1.3;
+  margin-top: 2vh;
+  margin-left: 75px;
+}
+
+.WrongWaste {
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);  /* Scales between 24px and 40px */
+  line-height: 1.2; /* Slightly reduced for compact spacing */
+  margin-top: 5vh; /* Less space above */
+  margin-left: 75px; 
+}
+
+.ScanAgain {
+  color: white;
+  text-align: left ;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  padding-left: 15px;
+  padding-top: 3px;
+
+}
+
+.ButtonContainer{
+  padding-left: 75px;
+  padding-top: 30px;
+}
+
+
+.PillButton {
   background: #9dc88d;
   border-radius: 61px;
   border-style: solid;
   border-color: transparent;
   border-width: 1px;
-  width: 356px;
-  height: 114px;
-  position: absolute;
-  left: 110px;
-  top: 914px;
+  width: 210px;
+  height: 60px;
+  position: relative; /* Changed from absolute to relative */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Aligns the text and arrow */
+  padding: 0 30px;
 }
 
-.waste-name {
-  color: #000000;
-  text-align: left;
-  font-family: "Poppins-ExtraBold", sans-serif;
-  font-size: 100px;
-  font-weight: 800;
-  position: absolute;
-  left: 89px;
-  top: 330px;
-  width: 763px;
-  height: 134px;
+.RightArrow {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }
-.this-waste-is-category-ganto-ganyan-idk-info-about-the-waste-siguro-kemerut-sana-manalo-na-kami-sa-codm-lenard-pabuhat-naman-oh-im-just-putting-random-stuff-here-para-magmukhang-paragraph {
-  color: #000000;
-  text-align: left;
-  font-family: "Poppins-Medium", sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  position: absolute;
-  left: 107px;
-  top: 477px;
-  width: 890px;
-  height: 285px;
+
+a {
+  text-decoration: none;
 }
-.wrong-waste-scan-again {
-  color: #000000;
-  text-align: left;
-  font-family: "Poppins-Regular", sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  position: absolute;
-  left: 110px;
-  top: 848px;
-  width: 514px;
-  height: 53px;
-}
-.scan2 {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Poppins-Black", sans-serif;
-  font-size: 60px;
-  font-weight: 900;
-  position: absolute;
-  left: 163px;
-  top: 926px;
-  width: 279px;
-  height: 114px;
-}
+
 .waste-pic {
   color: #000000;
   text-align: left;
@@ -193,196 +185,229 @@ header {
   width: 552px;
   height: 128px;
 }
-.right-arrow {
-  width: 43px;
-  height: 43px;
-  position: absolute;
-  left: 378px;
-  top: 949px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.group-43 {
-  position: absolute;
-  inset: 0;
-}
-.biodegradable {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Poppins-Medium", sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  position: absolute;
-  left: 105px;
-  top: 1460px;
-  width: 316px;
-  height: 61px;
-}
-.BiodegradableIcon {
-  width: 125px;
-  height: 125px;
-  position: absolute;
-  left: 200px;
-  top: 1330px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.group-46 {
-  position: absolute;
-  inset: 0;
-}
-.recyclable {
-  color: #ffffff;
-  text-align: left;
-  font-family: "Poppins-Medium", sans-serif;
-  font-size: 40px;
-  font-weight: 500;
-  position: absolute;
-  left: 1562px;
-  top: 1461px;
-}
-.triangular-arrows-sign-for-recycle-1 {
-  width: 134px;
-  height: 134px;
-  position: absolute;
-  left: 1606px;
-  top: 1316px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.rectangle-124 {
-  background: #ffffff;
-  border-radius: 43px;
-  border-style: solid;
-  border-color: #d9d9d9;
-  border-width: 10px;
-  width: 27.71%;
-  height: 23.46%;
-  position: absolute;
-  right: 67.92%;
-  left: 4.38%;
-  bottom: 22.59%;
-  top: 53.95%;
-  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.rectangle-161 {
-  background: #ffffff;
-  border-radius: 43px;
-  border-style: solid;
-  border-color: #d9d9d9;
-  border-width: 10px;
-  width: 27.71%;
-  height: 23.46%;
-  position: absolute;
-  right: 36.15%;
-  left: 36.15%;
-  bottom: 22.56%;
-  top: 53.98%;
-  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.rectangle-162 {
-  background: #ffffff;
-  border-radius: 43px;
-  border-style: solid;
-  border-color: #d9d9d9;
-  border-width: 10px;
-  width: 27.71%;
-  height: 23.46%;
-  position: absolute;
-  right: 4.38%;
-  left: 67.92%;
-  bottom: 22.56%;
-  top: 53.98%;
-  box-shadow: 5px 12px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.group-49 {
-  position: absolute;
-  inset: 0;
-}
-.group-44 {
-  width: 388px;
-  height: 106px;
-  position: static;
-}
-.non-hazardous-material {
-  color: #ffffff;
-  text-align: center;
-  font-family: "Poppins-Medium", sans-serif;
-  font-size: 40px;
-  line-height: 40px;
-  font-weight: 500;
-  position: absolute;
-  left: 538px;
-  top: 1457px;
-  width: 388px;
-  height: 106px;
+.containerYellow {
+  width: 100vw; 
+  height: 60vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  position: relative;
+  margin-bottom: 0px;
 }
-.group-48 {
-  width: 131px;
-  height: 131px;
-  position: static;
-}
-.biohazard-sign-1 {
-  width: 83.23px;
-  height: 83.23px;
+
+.YellowBox {
+  background: #f1b24a;
+  width: 100vw;
+  height: 40vh;
   position: absolute;
-  left: 690.88px;
-  top: 1336.99px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.stop-1 {
-  width: 131px;
-  height: 131px;
-  position: absolute;
-  left: 667px;
-  top: 1316px;
-  object-fit: cover;
-  aspect-ratio: 1;
-}
-.group-50 {
-  position: absolute;
-  inset: 0;
-}
-.group-45 {
-  width: 388px;
-  height: 221px;
-  position: static;
-}
-.non-combustible-material {
-  color: #ffffff;
-  text-align: center;
-  font-family: "Poppins-Medium", sans-serif;
-  font-size: 40px;
-  line-height: 40px;
-  font-weight: 500;
-  position: absolute;
-  left: 1043px;
-  top: 1461px;
-  width: 388px;
-  height: 106px;
+  top: 20vh;
+  left: 0;
+  bottom: 0px;
   display: flex;
+  justify-content: space-between;
+}
+
+.CategoryContainer1,
+.CategoryContainer2,
+.CategoryContainer3 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.CategoryContainer1 {
+  left: 15vw;
+  top: 30vh;
+}
+
+.CategoryContainer2 {
+  left: 45vw;
+  top: 30vh;
+}
+
+.CategoryContainer3 {
+  left: 75vw;
+  top: 30vh;
+}
+
+.BiodegradableIcon,
+.NonRecyclableIcon,
+.CombustibleIcon {
+  width: 6vw;
+  height: 6vw;
+  object-fit: cover;
+  aspect-ratio: 1;
+  z-index: 1;
+}
+
+.BioWord,
+.NonRecyWord,
+.ComWord {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-size: 2vw;
+  font-weight: 500;
+  margin-top: 3vh;
+  z-index: 1;
+}
+
+
+/*FOOTER*/
+
+.footer {
+  background-color: #4D774E;
+  color: white;
+  margin: auto;
+  width: 100vw;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: auto;
+  margin-top: 0;
+}
+
+.footer-text {
+  color: #164A41;
+}
+
+.about {
+  flex: 1;
+  max-width: 250px;
+}
+
+.about h3 {
+  font-size: 35px;
+  font-family: "Poppins", sans-serif;
+}
+
+.about p {
+  font-size: 18px;
+  font-weight: lighter;
+  font-family: "Poppins", sans-serif;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 35px;
+  width: 35px;
+  background-color: #F1B24A;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Quick Links & Contact Us */
+.quick-links, .contact {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+  margin: 40px 40px;
+}
+
+.quick-links h3, .contact h3 {
+  color: #164A41;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact p{
+  color: black;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.quick-links ul li {
+  margin: 8px 0;
+}
+
+.quick-links ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Footer Bottom Text */
+.footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  padding-bottom: 1%;
+}
+
+/* Button */
+#openForm {
+  background-color: #4D774E;
+  color: white;
+  font-size: 15px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Popup Form */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   justify-content: center;
+  align-items: center;
 }
-.fire-1-1 {
-  width: 88px;
-  height: 88px;
-  position: absolute;
-  left: 1193px;
-  top: 1346px;
-  object-fit: cover;
-  aspect-ratio: 1;
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  width: 500px;
 }
-.stop-2 {
-  width: 131px;
-  height: 131px;
+
+.popup-content input, .popup-content textarea {
+  width: 60%;
+  margin: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-content button {
+  background-color: #4D774E;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 35%;
+}
+
+/* Close Button */
+.close {
   position: absolute;
-  left: 1173px;
-  top: 1324px;
-  object-fit: cover;
-  aspect-ratio: 1;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
 }
