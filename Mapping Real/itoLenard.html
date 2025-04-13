@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>LenLens - Campus Map</title>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="div">
+
+        <div class="group">
+          
+          <header>
+            <h1 class="logo">
+                <img src="logopng.png" alt="Logo" id="logo"/>
+            </h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Scan</a></li>
+                    <li><a href="#">Maps</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+        </header>
+        </div>
+
+        <h1 class="map-title">Alangilan Interactive Campus Map</h1>
+        <p class="map-subtitle">Locate buildings and find waste disposal points across campus</p>
+
+        <div class="map-container">
+          <svg viewBox="0 0 700 600" width="100%" height="100%">
+            <!-- CIT Building -->
+            <rect id="cit" class="building" x="83" y="33" width="130" height="130" rx="10"></rect>
+            <text x="145" y="105" class="building-label" text-anchor="middle">CIT</text>
+
+            <!-- TAO Building -->
+            <rect id="tao" class="building" x="325" y="75" width="95" height="95" rx="10"></rect>
+            <text x="370" y="130" class="building-label" text-anchor="middle">TAO</text>
+
+            <!-- STEERHUB Building -->
+            <rect id="steerhub" class="building" x="83" y="190" width="130" height="90" rx="10"></rect>
+            <text x="145" y="240" class="building-label" text-anchor="middle">STEER HUB</text>
+
+            <!-- FDC Building -->
+            <rect id="fdc" class="building" x="83" y="300" width="180" height="85" rx="10"></rect>
+            <text x="170" y="350" class="building-label" text-anchor="middle">FDC</text>
+
+            <!-- CICS Building -->
+            <rect id="cics" class="building" x="83" y="400" width="90" height="125" rx="10"></rect>
+            <text x="130" y="470" class="building-label" text-anchor="middle">CICS</text>
+
+            <!-- COE Building -->
+            <rect id="coe" class="building" x="173" y="525" width="150" height="70" rx="10"></rect>
+            <text x="248" y="560" class="building-label" text-anchor="middle">COE</text>
+
+            <!-- CEAFA Building -->
+            <rect id="ceafa" class="building" x="405" y="330" width="120" height="120" rx="10"></rect>
+            <text x="465" y="390" class="building-label" text-anchor="middle">CEAFA</text>
+
+            <!-- Paths between buildings 
+            <path d="M178 168 L300 168 L315 131" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+            <path d="M183 220 L183 320" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+            <path d="M183 400 L183 430" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+            <path d="M153 550 L153 565" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
+            <path d="M283 360 L405 360 L405 400" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" /> -->
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Building Modal -->
+    <div id="buildingModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 class="building-title" id="buildingTitle">Building Name</h2>
+
+        <div class="building-description" id="buildingDescription">
+          Building description will appear here.
+        </div>
+
+        <div class="floor-container" id="floorContainer">
+          <div class="floor-tabs" id="floorTabs">
+            <!-- Tabs will be dynamically generated -->
+          </div>
+
+          <div class="floor-content-container" id="floorContentContainer">
+            <!-- Floor content will be dynamically generated -->
+          </div>
+        </div>
+
+        <div class="legend">
+          <h3 class="legend-title">Waste Bin Legend</h3>
+          <div class="legend-item">
+            <div class="legend-color recycling"></div>
+            <span>Recyclable Waste</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color hazardous"></div>
+            <span>Hazardous Waste</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color organic"></div>
+            <span>Organic Waste</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color general"></div>
+            <span>General Waste</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+
+  </body>
+</html>
