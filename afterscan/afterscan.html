@@ -1,129 +1,43 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Classification Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vars.css">
 </head>
-
 <body>
-  
-  
-  <header>
-    <h1 class="logo">
-        <img src="icons\logopng.png" alt="Logo" id="logo"/>
-    </h1>
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Scan</a></li>
-            <li><a href="#">Maps</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-    </nav>
-</header>
+    <div class="container">
+        <h1>Waste Classification Details</h1>
 
-<div class="WasteContainer">
+        <div class="result-card">
+            <div id="image-container" class="image-container">
+                <!-- Image will be inserted here -->
+            </div>
 
-  <div class="waste-name">Waste Name</div>
-  
-  <div class="Waste-Info"> this waste is [category]. ganto ganyan idk info about the waste siguro.
-    kemerut sana manalo na kami sa codm, lenard pabuhat naman oh. Im just
-    putting random stuff here para magmukhang paragraph. </div>
+            <div class="details">
+                <h2 id="category">Category: </h2>
+                <p id="type">Type: </p>
+                <p id="confidence">Confidence: </p>
 
-    <div class="WrongWaste">Wrong waste? Scan again.</div>
-</div>
+                <div class="disposal-info">
+                    <h3>Disposal Instructions</h3>
+                    <p id="disposal-text">Loading disposal information...</p>
+                </div>
 
-<div class="ButtonContainer">
-  <a href ="#">
-  <button class="PillButton">
-    <div class="ScanAgain">Scan</div>
-    <img class= "RightArrow" src="icons\right-arrow.png">
-  </button>
-  </div>
-  </a>  
-</div>
-<div class="containerYellow">
-  <div class="YellowBox"></div>
-  <div class="CategoryContainer1">
-    <img class="BiodegradableIcon" src="icons/BiodegradableIcon.png" />
-    <div class="BioWord">Biodegradable</div>
-  </div>
-  
-  <div class="CategoryContainer2">
-    <img class="NonRecyclableIcon" src="icons/non-recyclable.png" />
-    <div class="NonRecyWord">Non-Recyclable</div>
-  </div>
-  
-  <div class="CategoryContainer3">
-    <img class="CombustibleIcon" src="icons/fire (1).png" />
-    <div class="ComWord">Combustible</div>
-  </div>
-</div>
-
-<div class="GreenRectangleBG"></div>
-<div class="ImageBox"></div>
-
-  <footer class ="footer">
-    <div class ="footer-container">
-        <!--Abous us Section-->
-        <div class="about">
-            <h3>About Us</h3>
-            <p>Miss na kita baby hindi ko na kaya sobrang saya ko na muli tayong magkasama</p>
-            <h3>Socials</h3>
-            <div class="social-icons">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <div class="recycling-locations">
+                    <h3>Nearby Recycling Centers</h3>
+                    <div id="locations-list">
+                        <p>Loading locations...</p>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!--Quick Links-->
-        <div class="quick-links">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Guide</a></li>
-                <li><a href="#">Scan</a></li>
-                <li><a href="#">Maps</a></li>
-            </ul>
-        </div>
-
-        <!--Contact Us-->
-        <div class="contact">
-            <h3>Contact Us</h3>
-            <p>Email: info@gmail.com</p>
-            <p>Phone: 09123456789</p>
-            <p>Address: dito sa puso mo, batangas pilipinas</p>
-            <button  id="openForm">Send Direct Message</button>
-        </div>
+        <button id="back-button" class="action-button">Back to Scanner</button>
     </div>
-    <p class="footer-text">© 2025 EcoCart. All rights reserved.</p>
-</footer>
 
-<!-- Popup Form-->
- <div id="popupForm" class="popup">
-    <div class="popup-content">
-        <span id="closeForm" class="close">&times;</span>
-        <h2>Send Us a Direct Message</h2>
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Subject">
-            <textarea placeholder="Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </div>
- </div>
-
- <script src="script.js"></script>
-
-</body> 
-
-
-
+    <script src="script.js"></script>
+</body>
+</html>

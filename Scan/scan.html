@@ -4,14 +4,500 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scan Your Waste</title>
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="scan/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+        }
+
+        /* Navbar */
+        header {
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5f5f5;
+            margin-left: 75px;
+            margin-right: 75px;
+            margin-top: 10px;
+            height: 50px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            z-index: 10;
+        }
+
+        #logo {
+            width: 100px;
+            height: auto;
+            margin-left: 20px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-style: normal;
+            font-size: 18px;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            background-color: #e3e3e3;
+        }
+        /* Nav-End*/
+
+        .HeaderContainer{
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 900;
+            font-family: "Poppins";
+            margin-bottom: 10px;
+            text-align: center;
+            color: #182916;
+        }
+
+        .OuterBox {
+            top: 50px;
+            border: 10px solid #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: radial-gradient(ellipse, white, #9DC88D);
+            padding-top: 30px;
+            padding-bottom: 60px;
+            border-radius: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .OuterContent{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 400px;
+            height: auto;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            margin-top: -200px;
+            position: relative;
+        }
+
+        .content-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #9DC88D, #f7f7f7);
+            padding: 50px;
+            padding-top: 0px;
+            border-radius: 30px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            min-height: 400px;
+            max-height: 900px;
+            height: auto;
+            gap: 40px;
+            position: relative;
+            margin-top: 0px;
+            z-index: 3;
+        }
+
+        .content-box h3 {
+            font-size: 20px;
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+            color: #182916;
+            text-align: center;
+        }
+
+        .content-box p {
+            font-size: 15px;
+            color: #182916;
+        }
+
+        .info {
+            flex: 1;
+            text-align: center;
+            padding: 30px;
+            color: #182916;
+        }
+
+        p{
+            color: #182916;
+        }
+
+        .scanner {
+            width: 200px;
+            min-height: 200px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .scanner img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .scanner-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scanner-btn:hover img {
+            transform: scale(1.1);
+        }
+
+        .scanner-btn:active img {
+            transform: scale(0.95);
+        }
+
+        /* Camera Styles */
+        .camera-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        #camera-feed {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            background: black;
+        }
+
+        .camera-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .capture-btn, .cancel-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .capture-btn {
+            background-color: #4D774E;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: #F44336;
+            color: white;
+        }
+
+        .capture-btn:hover, .cancel-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .capture-btn:active, .cancel-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Upload */
+        .upload-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            flex-direction: column;
+            z-index: 3;
+        }
+
+        .upload-btn {
+            display: flex;
+            background: #9DC88D;
+            color: #182916;
+            padding: 15px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s ease-in-out;
+            flex-direction: column;
+        }
+
+        .upload-btn:hover {
+            background: rgb(210, 202, 202);
+        }
+
+        #upload-input {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .content-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .scanner {
+                margin-bottom: 20px;
+            }
+
+            .upload-box {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /*FOOTER*/
+        .footer {
+            background-color: #4D774E;
+            color: white;
+            margin: auto;
+            width: 100%;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        .footer-text {
+            color: #164A41;
+        }
+
+        .about {
+            flex: 1;
+            max-width: 250px;
+        }
+
+        .about h3 {
+            font-size: 35px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .about p {
+            font-size: 18px;
+            font-weight: lighter;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 35px;
+            width: 35px;
+            background-color: #F1B24A;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Quick Links & Contact Us */
+        .quick-links, .contact {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            text-align: center;
+            margin: 40px 40px;
+        }
+
+        .quick-links h3, .contact h3 {
+            color: #164A41;
+            font-size: 25px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .contact p{
+            color: black;
+            font-size: 18px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .quick-links ul {
+            list-style: none;
+            padding: 0;
+            font-size: 20px;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .quick-links ul li {
+            margin: 8px 0;
+        }
+
+        .quick-links ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* Footer Bottom Text */
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            padding-bottom: 1%;
+        }
+
+        /* Button */
+        #openForm {
+            background-color: #4D774E;
+            color: white;
+            font-size: 15px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Popup Form */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            font-family: "Poppins", sans-serif;
+            text-align: center;
+            width: 500px;
+        }
+
+        .popup-content input, .popup-content textarea {
+            width: 60%;
+            margin: 8px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .popup-content button {
+            background-color: #4D774E;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            width: 35%;
+        }
+
+        /* Close Button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 20px auto;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4D774E;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Results modal */
+        .results-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Error modal */
+        .error-modal div {
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+    </style>
 </head>
 <body>
-
     <header>
         <h1 class="logo">
             <img src="logopng.png" alt="Logo" id="logo"/>
@@ -25,21 +511,27 @@
                 <li><a href="#">Contact Us</a></li>
             </ul>
         </nav>
-    </header> 
+    </header>
     <div class="OuterBox">
         <div class="HeaderContainer">
             <h1>SCAN YOUR WASTE</h1>
         </div>
-        
     </div>
-    <div class = "OuterContent"> 
+    <div class="OuterContent">
         <div class="content-box">
             <div class="info">
                 <h3>SCAN YOUR WASTE</h3>
                 <p>Point the camera to the waste to classify it!</p>
             </div>
             <div class="scanner">
-                <button class="scanner-btn">
+                <div class="camera-container" id="camera-container">
+                    <video id="camera-feed" autoplay playsinline></video>
+                    <div class="camera-controls">
+                        <button id="capture-btn" class="capture-btn">Capture</button>
+                        <button id="cancel-camera" class="cancel-btn">Cancel</button>
+                    </div>
+                </div>
+                <button class="scanner-btn" id="open-camera">
                     <img src="ScanSquare.png" alt="Scanner">
                 </button>
             </div>
@@ -47,7 +539,6 @@
                 <h3>UPLOAD AN IMAGE</h3>
                 <p>Upload an image to classify it!</p>
             </div>
-            
         </div>
         <div class="upload-box">
             <label for="upload-input" class="upload-btn">
@@ -57,62 +548,320 @@
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="footer-container">
+            <!--Abous us Section-->
+            <div class="about">
+                <h3>About Us</h3>
+                <p>Miss na kita baby hindi ko na kaya sobrang saya ko na muli tayong magkasama</p>
+                <h3>Socials</h3>
+                <div class="social-icons">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
 
-    
-  <footer class ="footer">
-    <div class ="footer-container">
-        <!--Abous us Section-->
-        <div class="about">
-            <h3>About Us</h3>
-            <p>Miss na kita baby hindi ko na kaya sobrang saya ko na muli tayong magkasama</p>
-            <h3>Socials</h3>
-            <div class="social-icons">
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <!--Quick Links-->
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Guide</a></li>
+                    <li><a href="#">Scan</a></li>
+                    <li><a href="#">Maps</a></li>
+                </ul>
+            </div>
+
+            <!--Contact Us-->
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@gmail.com</p>
+                <p>Phone: 09123456789</p>
+                <p>Address: dito sa puso mo, batangas pilipinas</p>
+                <button id="openForm">Send Direct Message</button>
             </div>
         </div>
+        <p class="footer-text">© 2025 EcoCart. All rights reserved.</p>
+    </footer>
 
-        <!--Quick Links-->
-        <div class="quick-links">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Guide</a></li>
-                <li><a href="#">Scan</a></li>
-                <li><a href="#">Maps</a></li>
-            </ul>
-        </div>
-
-        <!--Contact Us-->
-        <div class="contact">
-            <h3>Contact Us</h3>
-            <p>Email: info@gmail.com</p>
-            <p>Phone: 09123456789</p>
-            <p>Address: dito sa puso mo, batangas pilipinas</p>
-            <button  id="openForm">Send Direct Message</button>
+    <!-- Popup Form-->
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span id="closeForm" class="close">&times;</span>
+            <h2>Send Us a Direct Message</h2>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Subject">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
         </div>
     </div>
-    <p class="footer-text">© 2025 EcoCart. All rights reserved.</p>
-</footer>
 
-<!-- Popup Form-->
- <div id="popupForm" class="popup">
-    <div class="popup-content">
-        <span id="closeForm" class="close">&times;</span>
-        <h2>Send Us a Direct Message</h2>
-        <form>
-            <input type="text" placeholder="Name">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Subject">
-            <textarea placeholder="Message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </div>
- </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Existing popup form code
+            const openFormBtn = document.getElementById("openForm");
+            const closeFormBtn = document.getElementById("closeForm");
+            const popupForm = document.getElementById("popupForm");
 
- <script src="script.js"></script>
+            openFormBtn.addEventListener("click", function () {
+                popupForm.style.display = "flex";
+            });
 
+            closeFormBtn.addEventListener("click", function () {
+                popupForm.style.display = "none";
+            });
+
+            popupForm.addEventListener("click", function (event) {
+                if (event.target === popupForm) {
+                    popupForm.style.display = "none";
+                }
+            });
+
+            // Camera elements and functionality
+            const cameraContainer = document.getElementById('camera-container');
+            const cameraFeed = document.getElementById('camera-feed');
+            const openCameraBtn = document.getElementById('open-camera');
+            const captureBtn = document.getElementById('capture-btn');
+            const cancelCameraBtn = document.getElementById('cancel-camera');
+            let stream = null;
+
+            // Open camera
+            openCameraBtn.addEventListener('click', async function() {
+                try {
+                    openCameraBtn.style.display = 'none';
+                    cameraContainer.style.display = 'flex';
+
+                    stream = await navigator.mediaDevices.getUserMedia({
+                        video: {
+                            facingMode: 'environment', // Prefer rear camera
+                            width: { ideal: 1280 },
+                            height: { ideal: 720 }
+                        },
+                        audio: false
+                    });
+
+                    cameraFeed.srcObject = stream;
+                } catch (err) {
+                    console.error("Camera error:", err);
+                    showErrorModal("Could not access camera. Please check permissions.");
+                    resetCameraUI();
+                }
+            });
+
+            // Capture image
+            captureBtn.addEventListener('click', function() {
+                if (!stream) return;
+
+                const canvas = document.createElement('canvas');
+                canvas.width = cameraFeed.videoWidth;
+                canvas.height = cameraFeed.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+                canvas.toBlob(function(blob) {
+                    const file = new File([blob], 'capture.jpg', { type: 'image/jpeg' });
+                    classifyImage(file, true);
+                    closeCamera();
+                }, 'image/jpeg', 0.8);
+            });
+
+            // Cancel camera
+            cancelCameraBtn.addEventListener('click', function() {
+                closeCamera();
+            });
+
+            function closeCamera() {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                    stream = null;
+                }
+                cameraFeed.srcObject = null;
+                resetCameraUI();
+            }
+
+            function resetCameraUI() {
+                cameraContainer.style.display = 'none';
+                openCameraBtn.style.display = 'block';
+            }
+
+            // Upload functionality
+            const uploadInput = document.getElementById("upload-input");
+            uploadInput.addEventListener("change", function(e) {
+                if (e.target.files.length > 0) {
+                    classifyImage(e.target.files[0], false);
+                }
+            });
+
+            function classifyImage(file, isCamera) {
+                showLoadingIndicator();
+
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/api/classify', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    hideLoadingIndicator();
+
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+
+                    if (data.success) {
+                        showResultsModal(data, isCamera);
+                    } else {
+                        throw new Error('Classification failed');
+                    }
+                })
+                .catch(error => {
+                    hideLoadingIndicator();
+                    showErrorModal(error.message);
+                });
+            }
+
+            function showLoadingIndicator() {
+                // Create or show loading indicator
+                let loader = document.getElementById('loading-indicator');
+                if (!loader) {
+                    loader = document.createElement('div');
+                    loader.id = 'loading-indicator';
+                    loader.style.position = 'fixed';
+                    loader.style.top = '0';
+                    loader.style.left = '0';
+                    loader.style.width = '100%';
+                    loader.style.height = '100%';
+                    loader.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                    loader.style.display = 'flex';
+                    loader.style.justifyContent = 'center';
+                    loader.style.alignItems = 'center';
+                    loader.style.zIndex = '1000';
+
+                    loader.innerHTML = `
+                        <div style="background: white; padding: 30px; border-radius: 10px; text-align: center;">
+                            <h3>Processing Image...</h3>
+                            <div class="spinner"></div>
+                        </div>
+                    `;
+
+                    document.body.appendChild(loader);
+                } else {
+                    loader.style.display = 'flex';
+                }
+            }
+
+            function hideLoadingIndicator() {
+                const loader = document.getElementById('loading-indicator');
+                if (loader) {
+                    loader.style.display = 'none';
+                }
+            }
+
+            function showResultsModal(data, isCamera) {
+                // Create modal
+                const modal = document.createElement('div');
+                modal.className = 'results-modal';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                modal.style.display = 'flex';
+                modal.style.justifyContent = 'center';
+                modal.style.alignItems = 'center';
+                modal.style.zIndex = '1000';
+
+                // Determine color based on waste type
+                const typeColor = data.waste_type === 'Recyclable' ? '#4CAF50' :
+                                 data.waste_type === 'Hazardous' ? '#F44336' : '#FF9800';
+
+                // Modal content
+                modal.innerHTML = `
+                    <div class="results-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;">
+                        <h2 style="color: #164A41; margin-bottom: 20px;">Classification Results</h2>
+
+                        ${data.image_url ? `
+                            <div style="margin-bottom: 20px; text-align: center;">
+                                <img src="${data.image_url}" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+                            </div>
+                        ` : ''}
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Category:</strong> ${data.category}
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <strong>Type:</strong>
+                            <span style="color: ${typeColor}; font-weight: bold;">${data.waste_type}</span>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <button id="closeResults" style="padding: 10px 20px; background: #4D774E; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                Close
+                            </button>
+                            <button id="viewDetails" style="padding: 10px 20px; background: #F1B24A; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                // Add event listeners
+                document.getElementById('closeResults').addEventListener('click', function() {
+                    document.body.removeChild(modal);
+                });
+
+                document.getElementById('viewDetails').addEventListener('click', function() {
+                    // Redirect to afterscan page with results
+                    window.location.href = `afterscan/afterscan.html?category=${encodeURIComponent(data.category)}&type=${encodeURIComponent(data.waste_type)}&confidence=${data.confidence}&image=${encodeURIComponent(data.image_url || '')}`;
+                });
+            }
+
+            function showErrorModal(message) {
+                const modal = document.createElement('div');
+                modal.className = 'error-modal';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                modal.style.display = 'flex';
+                modal.style.justifyContent = 'center';
+                modal.style.alignItems = 'center';
+                modal.style.zIndex = '1000';
+
+                modal.innerHTML = `
+                    <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center;">
+                        <h3 style="color: #F44336; margin-bottom: 20px;">Error</h3>
+                        <p style="margin-bottom: 25px;">${message}</p>
+                        <button id="closeError" style="padding: 10px 20px; background: #4D774E; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                            OK
+                        </button>
+                    </div>
+                `;
+
+                document.body.appendChild(modal);
+
+                document.getElementById('closeError').addEventListener('click', function() {
+                    document.body.removeChild(modal);
+                });
+            }
+        });
+    </script>
 </body>
 </html>

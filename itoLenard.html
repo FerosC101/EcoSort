@@ -1,760 +1,268 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <link rel="stylesheet" href="style.css" />
-    <title>LenLens - Campus Map</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LenLens</title>
     <style>
-      /* Additional styles specific to the map page */
-      .map-container {
-        position: relative;
-        width: 90%;
-        height: 700px;
-        margin: 40px auto;
-        background-color: #fff;
-        border-radius: 20px;
-        box-shadow: 0px 10px 50px #00000040;
-        overflow: hidden;
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-      .map-title {
-        text-align: center;
-        font-family: "Roboto Slab-Regular", Helvetica;
-        font-weight: 400;
-        color: #164a41;
-        font-size: 50px;
-        margin-top: 60px;
-        letter-spacing: 1.5px;
-      }
+        body {
+            background: linear-gradient(135deg, #f8f8f3 0%, #d3e8d3 100%);
+            color: #2d5141;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-      .map-subtitle {
-        text-align: center;
-        font-family: "Roboto Flex-Regular", Helvetica;
-        color: #4d774e;
-        font-size: 20px;
-        margin-bottom: 30px;
-      }
+        .splash-container {
+            text-align: center;
+            max-width: 800px;
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(45, 81, 65, 0.15);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
 
-      /* Building styles */
-      .building {
-        fill: #e0e0e0;
-        stroke: #bdbdbd;
-        stroke-width: 1;
-        cursor: pointer;
-        transition: all 0.3s;
-      }
+        .logo-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
 
-      .building:hover {
-        fill: #9dc88d;
-      }
+        .logo-placeholder {
+            width: 250px;
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #f0f7f0;
+            border: 2px dashed #5d9b7e;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d9b7e;
+            font-weight: bold;
+        }
 
-      .building.active {
-        fill: #4d774e;
-      }
+        .tagline {
+            font-size: 1.6rem;
+            margin-bottom: 40px;
+            color: #2d5141;
+            font-weight: 500;
+            line-height: 1.4;
+        }
 
-      .building-label {
-        font-size: 12px;
-        font-weight: bold;
-        fill: #424242;
-        pointer-events: none;
-        user-select: none;
-        font-family: "Roboto Flex-Regular", Helvetica;
-      }
+        .enter-button {
+            background-color: #2d5141;
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 30px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 15px rgba(45, 81, 65, 0.2);
+        }
 
-      /* Modal styles */
-      .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.7);
-        z-index: 100;
-        overflow: auto;
-      }
+        .enter-button:hover {
+            background-color: #3d6b53;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(45, 81, 65, 0.3);
+        }
 
-      .modal-content {
-        background-color: #fffdf3;
-        margin: 5% auto;
-        padding: 30px;
-        width: 80%;
-        max-width: 800px;
-        border-radius: 20px;
-        position: relative;
-        box-shadow: 0px 10px 50px #00000040;
-      }
+        .background-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-      .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        font-size: 28px;
-        color: #757575;
-        cursor: pointer;
-        transition: color 0.3s;
-        font-family: "Roboto Flex-Regular", Helvetica;
-      }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
 
-      .close-btn:hover {
-        color: #164a41;
-      }
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            left: -150px;
+            background: radial-gradient(circle, #a3d0a3 0%, rgba(163, 208, 163, 0.3) 70%);
+            animation: float 15s infinite ease-in-out;
+        }
 
-      .building-title {
-        color: #164a41;
-        font-family: "Roboto Slab-Regular", Helvetica;
-        font-size: 32px;
-        margin-bottom: 20px;
-      }
+        .circle-2 {
+            width: 600px;
+            height: 600px;
+            bottom: -250px;
+            right: -250px;
+            background: radial-gradient(circle, #8ab887 0%, rgba(138, 184, 135, 0.2) 70%);
+            animation: float 20s infinite ease-in-out reverse;
+        }
 
-      .building-description {
-        color: #434d39;
-        font-family: "Roboto Flex-Regular", Helvetica;
-        font-size: 18px;
-        line-height: 1.6;
-        margin-bottom: 25px;
-      }
+        .circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            right: 10%;
+            background: radial-gradient(circle, #b8dbb8 0%, rgba(184, 219, 184, 0.4) 70%);
+            animation: float 10s infinite ease-in-out;
+        }
 
-      /* Floor tabs */
-      .floor-tabs {
-        display: flex;
-        border-bottom: 1px solid #d9d9d9;
-        margin-bottom: 20px;
-        gap: 5px;
-      }
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(15px, 15px) rotate(5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
 
-      .floor-tab {
-        padding: 12px 25px;
-        background-color: #f5f5f5;
-        border: none;
-        cursor: pointer;
-        border-radius: 10px 10px 0 0;
-        transition: all 0.3s;
-        font-family: "Roboto Flex-Medium", Helvetica;
-        font-weight: 500;
-        color: #616161;
-      }
+        .welcome-message {
+            margin: 30px 0;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            color: #444;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-      .floor-tab:hover {
-        background-color: #e8f5e9;
-      }
+        .loader {
+            width: 100%;
+            height: 4px;
+            background-color: #eaefe9;
+            margin: 40px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
 
-      .floor-tab.active {
-        background-color: #4d774e;
-        color: white;
-      }
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #5d9b7e, #a3d0a3);
+            animation: loading 3s ease-in-out forwards;
+            border-radius: 10px;
+        }
 
-      /* Floor content */
-      .floor-content {
-        display: none;
-        padding: 25px;
-        border: 1px solid #d9d9d9;
-        border-top: none;
-        min-height: 350px;
-        position: relative;
-        background-color: #f9f9f9;
-        border-radius: 0 0 10px 10px;
-      }
+        @keyframes loading {
+            0% { width: 0%; }
+            60% { width: 60%; }
+            90% { width: 90%; }
+            100% { width: 100%; }
+        }
 
-      .floor-content.active {
-        display: block;
-      }
+        .version-text {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 0.9rem;
+            color: #888;
+        }
 
-      /* Legend */
-      .legend {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        gap: 15px;
-        padding: 15px;
-        background-color: #f5f5f5;
-        border-radius: 10px;
-      }
+        .leaf-decoration {
+            position: absolute;
+            opacity: 0.15;
+            z-index: -1;
+        }
 
-      .legend-title {
-        width: 100%;
-        margin-top: 0;
-        color: #164a41;
-        font-family: "Roboto Slab-Regular", Helvetica;
-      }
+        .leaf-1 {
+            top: 20px;
+            left: 30px;
+            width: 100px;
+            height: 100px;
+            transform: rotate(-15deg);
+        }
 
-      .legend-item {
-        display: flex;
-        align-items: center;
-        margin-right: 15px;
-        font-family: "Roboto Flex-Regular", Helvetica;
-      }
+        .leaf-2 {
+            bottom: 30px;
+            right: 40px;
+            width: 80px;
+            height: 80px;
+            transform: rotate(25deg);
+        }
 
-      .legend-color {
-        width: 18px;
-        height: 18px;
-        margin-right: 8px;
-        border-radius: 50%;
-      }
+        @media (max-width: 768px) {
+            .splash-container {
+                width: 92%;
+                padding: 40px 25px;
+            }
 
-      /* Floor layout */
-      .floor-layout {
-        width: 100%;
-        height: 450px;
-        background-color: #f0f0f0;
-        position: relative;
-        border-radius: 10px;
-        overflow: hidden;
-      }
+            .logo-placeholder {
+                width: 200px;
+                height: 80px;
+            }
 
-      .room {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        font-family: "Roboto Flex-Regular", Helvetica;
-      }
+            .tagline {
+                font-size: 1.3rem;
+            }
 
-      .stairs {
-        background-color: #e0e0e0;
-        color: #424242;
-      }
+            .welcome-message {
+                font-size: 1.1rem;
+            }
 
-      .elevator {
-        background-color: #e0e0e0;
-        color: #424242;
-      }
-
-      /* Trash cans */
-      .trash-can {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        position: absolute;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: bold;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        transition: transform 0.2s;
-        font-family: "Roboto Flex-Medium", Helvetica;
-      }
-
-      .trash-can:hover {
-        transform: scale(1.1);
-      }
-
-      .recycling {
-        background-color: #2196F3;
-      }
-
-      .hazardous {
-        background-color: #F44336;
-      }
-
-      .organic {
-        background-color: #4CAF50;
-      }
-
-      .general {
-        background-color: #9E9E9E;
-      }
-
-      /* Tooltip */
-      .tooltip {
-        position: relative;
-      }
-
-      .tooltip:hover::after {
-        content: attr(data-tooltip);
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: rgba(0, 0, 0, 0.8);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 12px;
-        white-space: nowrap;
-        z-index: 100;
-        font-family: "Roboto Flex-Regular", Helvetica;
-      }
+            .enter-button {
+                padding: 15px 35px;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <div class="frame">
-      <div class="div">
-
-        <div class="group">
-          
-          <div class="navbar">
-            <a href="scan.html" class="text-wrapper">Scan</a>
-            <a href="maps.html" class="text-wrapper-2">Maps</a>
-            <a href="contact.html" class="text-wrapper-3">Contact Us</a>
-            <a href="index.html" class="text-wrapper-4">Home</a>
-            <a href="about.html" class="text-wrapper-5">About Us</a>
-            <div class="group-2">
-              <div class="group-3">
-                <div class="group-4"></div>
-                <div class="group-5"></div>
-                <img class="vector" src="img/logopng.png" alt="Logo" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h1 class="map-title">Alanigilan Interactive Campus Map</h1>
-        <p class="map-subtitle">Locate buildings and find waste disposal points across campus</p>
-
-        <div class="map-container">
-          <svg viewBox="0 0 700 600" width="100%" height="100%">
-            <!-- CIT Building -->
-            <rect id="cit" class="building" x="83" y="83" width="85" height="85" rx="10"></rect>
-            <text x="125" y="130" class="building-label" text-anchor="middle">CIT</text>
-
-            <!-- TAO Building -->
-            <rect id="tao" class="building" x="315" y="131" width="55" height="55" rx="10"></rect>
-            <text x="343" y="157" class="building-label" text-anchor="middle">TAO</text>
-
-            <!-- STEEHUB Building -->
-            <rect id="steehub" class="building" x="83" y="220" width="100" height="60" rx="10"></rect>
-            <text x="133" y="250" class="building-label" text-anchor="middle">STEEHUB</text>
-
-            <!-- FDC Building -->
-            <rect id="fdc" class="building" x="83" y="320" width="200" height="80" rx="10"></rect>
-            <text x="183" y="360" class="building-label" text-anchor="middle">FDC</text>
-
-            <!-- CICS Building -->
-            <rect id="cics" class="building" x="83" y="430" width="70" height="120" rx="10"></rect>
-            <text x="118" y="485" class="building-label" text-anchor="middle">CICS</text>
-
-            <!-- COE Building -->
-            <rect id="coe" class="building" x="153" y="565" width="150" height="40" rx="10"></rect>
-            <text x="228" y="590" class="building-label" text-anchor="middle">COE</text>
-
-            <!-- CEAFA Building -->
-            <rect id="ceafa" class="building" x="405" y="400" width="80" height="80" rx="10"></rect>
-            <text x="445" y="440" class="building-label" text-anchor="middle">CEAFA</text>
-
-            <!-- Paths between buildings -->
-            <path d="M168 168 L315 168 L315 131" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
-            <path d="M183 220 L183 320" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
-            <path d="M183 400 L183 430" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
-            <path d="M153 550 L153 565" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
-            <path d="M283 360 L405 360 L405 400" stroke="#4d774e" stroke-width="3" fill="none" stroke-dasharray="5,5" />
-          </svg>
-        </div>
-      </div>
+</head>
+<body>
+    <div class="background-elements">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
     </div>
 
-    <!-- Building Modal -->
-    <div id="buildingModal" class="modal">
-      <div class="modal-content">
-        <span class="close-btn">&times;</span>
-        <h2 class="building-title" id="buildingTitle">Building Name</h2>
+    <div class="splash-container">
+        <!-- Decorative leaf elements -->
+        <svg class="leaf-decoration leaf-1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 C80,10 90,40 90,65 C90,85 70,90 50,90 C30,90 10,85 10,65 C10,40 20,10 50,10 Z" fill="#2d5141"></path>
+            <path fill="none" stroke="#2d5141" stroke-width="2" d="M50,30 C50,50 50,70 50,90"></path>
+        </svg>
+        <svg class="leaf-decoration leaf-2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50,10 C80,10 90,40 90,65 C90,85 70,90 50,90 C30,90 10,85 10,65 C10,40 20,10 50,10 Z" fill="#2d5141"></path>
+            <path fill="none" stroke="#2d5141" stroke-width="2" d="M50,30 C50,50 50,70 50,90"></path>
+        </svg>
 
-        <div class="building-description" id="buildingDescription">
-          Building description will appear here.
+        <div class="logo-container">
+            <!-- Replace this with your actual logo image -->
+            <div class="logo-placeholder">Your Logo Here</div>
         </div>
 
-        <div class="floor-container" id="floorContainer">
-          <div class="floor-tabs" id="floorTabs">
-            <!-- Tabs will be dynamically generated -->
-          </div>
+        <div class="tagline">Discover the Natural World Through Your Lens</div>
 
-          <div class="floor-content-container" id="floorContentContainer">
-            <!-- Floor content will be dynamically generated -->
-          </div>
+        <div class="welcome-message">
+            Welcome to LenLens, your personal guide to plant identification.
+            Explore the world around you, learn about plants, and connect
+            with nature like never before.
         </div>
 
-        <div class="legend">
-          <h3 class="legend-title">Waste Bin Legend</h3>
-          <div class="legend-item">
-            <div class="legend-color recycling"></div>
-            <span>Recyclable Waste</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color hazardous"></div>
-            <span>Hazardous Waste</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color organic"></div>
-            <span>Organic Waste</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-color general"></div>
-            <span>General Waste</span>
-          </div>
+        <div class="loader">
+            <div class="loader-bar"></div>
         </div>
-      </div>
+
+        <a href="#" class="enter-button">Enter App</a>
+
+        <div class="version-text">v 2.1.0</div>
     </div>
-
-    <script>
-      // Building data
-      const buildings = {
-        cit: {
-          name: "Center for Information Technology",
-          description: "The Center for Information Technology (CIT) houses computer labs and classrooms designed for computer science and IT education. The building features modern computer equipment, smart classrooms, and collaborative spaces for students to work on projects and assignments.",
-          floors: 3
-        },
-        tao: {
-          name: "Technological Arts Office",
-          description: "The Technological Arts Office (TAO) is focused on creative digital arts and design. This building contains design studios, multimedia labs, and exhibition spaces for students to showcase their work. It serves as a hub for interdisciplinary collaboration between technology and creative arts.",
-          floors: 2
-        },
-        steehub: {
-          name: "Science, Technology, Engineering, and Environment Hub",
-          description: "A hub for interdisciplinary research and collaboration focusing on sustainable technologies and environmental science. STEEHUB houses research laboratories, seminar rooms, and collaborative workspaces designed to foster innovation across different scientific disciplines.",
-          floors: 3
-        },
-        fdc: {
-          name: "Faculty Development Center",
-          description: "A center dedicated to faculty research and development. The FDC provides resources, training facilities, and meeting spaces for faculty members to enhance their teaching methodologies and research capabilities. It includes conference rooms, training labs, and a resource library.",
-          floors: 4
-        },
-        cics: {
-          name: "College of Information and Computer Sciences",
-          description: "The CICS building houses the College of Information and Computer Sciences with specialized labs for computing education and research. The building features programming labs, networking facilities, hardware workshops, and research spaces for advanced computing projects and artificial intelligence research.",
-          floors: 5
-        },
-        coe: {
-          name: "College of Engineering",
-          description: "The College of Engineering building contains engineering labs and classrooms for various engineering disciplines. Facilities include materials testing labs, fluid dynamics labs, electronics workshops, and design studios where students can work on practical engineering projects and research.",
-          floors: 3
-        },
-        ceafa: {
-          name: "College of Engineering and Architecture Faculty Association",
-          description: "Faculty offices and meeting rooms for engineering and architecture departments. CEAFA provides spaces for faculty collaboration, student consultations, and administrative functions for the engineering and architecture programs. It also houses small exhibition spaces for student design projects.",
-          floors: 4
-        }
-      };
-
-      // Get DOM elements
-      const modal = document.getElementById("buildingModal");
-      const buildingTitle = document.getElementById("buildingTitle");
-      const buildingDescription = document.getElementById("buildingDescription");
-      const floorTabs = document.getElementById("floorTabs");
-      const floorContentContainer = document.getElementById("floorContentContainer");
-      const closeBtn = document.querySelector(".close-btn");
-
-      // Add click event to all buildings
-      document.querySelectorAll(".building").forEach(building => {
-        building.addEventListener("click", function() {
-          // Remove active class from all buildings
-          document.querySelectorAll(".building").forEach(b => {
-            b.classList.remove("active");
-          });
-
-          // Add active class to clicked building
-          this.classList.add("active");
-
-          const buildingId = this.id;
-          showBuildingDetails(buildingId);
-        });
-      });
-
-      // Close the modal when clicking the X
-      closeBtn.addEventListener("click", function() {
-        modal.style.display = "none";
-
-        // Remove active class from all buildings
-        document.querySelectorAll(".building").forEach(b => {
-          b.classList.remove("active");
-        });
-      });
-
-      // Close the modal when clicking outside the content
-      window.addEventListener("click", function(event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
-
-          // Remove active class from all buildings
-          document.querySelectorAll(".building").forEach(b => {
-            b.classList.remove("active");
-          });
-        }
-      });
-
-      // Function to show building details
-      function showBuildingDetails(buildingId) {
-        const building = buildings[buildingId];
-
-        // Update modal content
-        buildingTitle.textContent = building.name;
-        buildingDescription.textContent = building.description;
-
-        // Clear previous floor tabs and content
-        floorTabs.innerHTML = "";
-        floorContentContainer.innerHTML = "";
-
-        // Create floor tabs and content
-        for (let i = 1; i <= building.floors; i++) {
-          // Create tab
-          const tab = document.createElement("button");
-          tab.className = "floor-tab";
-          tab.textContent = `Floor ${i}`;
-          if (i === 1) tab.classList.add("active");
-          floorTabs.appendChild(tab);
-
-          // Create floor content
-          const floorContent = document.createElement("div");
-          floorContent.className = "floor-content";
-          if (i === 1) floorContent.classList.add("active");
-
-          if (buildingId === "cics") {
-            // Create CICS floor layout
-            const floorLayout = createCICSFloorLayout(i);
-            floorContent.appendChild(floorLayout);
-          } else {
-            // Create generic floor layout for other buildings
-            const floorLayout = createGenericFloorLayout(buildingId, i);
-            floorContent.appendChild(floorLayout);
-          }
-
-          floorContentContainer.appendChild(floorContent);
-
-          // Add click event to tab
-          tab.addEventListener("click", function() {
-            // Remove active class from all tabs and content
-            document.querySelectorAll(".floor-tab").forEach(t => t.classList.remove("active"));
-            document.querySelectorAll(".floor-content").forEach(c => c.classList.remove("active"));
-
-            // Add active class to clicked tab and corresponding content
-            this.classList.add("active");
-            floorContentContainer.children[i-1].classList.add("active");
-          });
-        }
-
-        // Show the modal
-        modal.style.display = "block";
-      }
-
-      // Function to create CICS floor layout
-      function createCICSFloorLayout(floorNumber) {
-        const layout = document.createElement("div");
-        layout.className = "floor-layout";
-        layout.style.position = "relative";
-
-        // Floor title
-        const title = document.createElement("h3");
-        title.textContent = `CICS Floor ${floorNumber}`;
-        title.style.textAlign = "center";
-        title.style.padding = "10px";
-        title.style.margin = "0";
-        title.style.backgroundColor = "#4d774e";
-        title.style.color = "white";
-        layout.appendChild(title);
-
-        // Main corridor
-        const corridor = document.createElement("div");
-        corridor.style.position = "absolute";
-        corridor.style.left = "0";
-        corridor.style.top = "50px";
-        corridor.style.width = "100%";
-        corridor.style.height = "60%";
-        corridor.style.backgroundColor = "#f0f0f0";
-        layout.appendChild(corridor);
-
-        // Stairs left
-        const stairsLeft = document.createElement("div");
-        stairsLeft.className = "room stairs";
-        stairsLeft.style.left = "0";
-        stairsLeft.style.top = "50px";
-        stairsLeft.style.width = "15%";
-        stairsLeft.style.height = "60%";
-        stairsLeft.textContent = "Stairs";
-        layout.appendChild(stairsLeft);
-
-        // Stairs right
-        const stairsRight = document.createElement("div");
-        stairsRight.className = "room stairs";
-        stairsRight.style.right = "0";
-        stairsRight.style.top = "50px";
-        stairsRight.style.width = "15%";
-        stairsRight.style.height = "60%";
-        stairsRight.textContent = "Stairs";
-        layout.appendChild(stairsRight);
-
-        // Rooms on top row - different for each floor
-        const roomColors = [
-          "#7cb342", // light green
-          "#5c6bc0", // indigo
-          "#9c27b0", // purple
-          "#00796b", // teal
-          "#ef6c00", // orange
-          "#d32f2f"  // red
-        ];
-
-        const roomLabels = [
-          `${floorNumber}01`,
-          `${floorNumber}02`,
-          `${floorNumber}03`,
-          `${floorNumber}04`,
-          `${floorNumber}05`,
-          `${floorNumber}06`
-        ];
-
-        for (let i = 0; i < 6; i++) {
-          const room = document.createElement("div");
-          room.className = "room";
-          room.style.left = `${15 + i * 11.67}%`;
-          room.style.top = "50px";
-          room.style.width = "11.67%";
-          room.style.height = "60%";
-          room.style.backgroundColor = roomColors[i];
-          room.textContent = roomLabels[i];
-          layout.appendChild(room);
-        }
-
-        // Elevator
-        const elevator = document.createElement("div");
-        elevator.className = "room elevator";
-        elevator.style.left = "40%";
-        elevator.style.top = "80%";
-        elevator.style.width = "20%";
-        elevator.style.height = "15%";
-        elevator.textContent = "Elevator";
-        layout.appendChild(elevator);
-
-        // Trash cans
-        const trashCanTypes = [
-          { type: "recycling", label: "R" },
-          { type: "hazardous", label: "H" },
-          { type: "organic", label: "O" },
-          { type: "general", label: "G" }
-        ];
-
-        // Position trash cans
-        for (let i = 0; i < 4; i++) {
-          const trashCan = document.createElement("div");
-          trashCan.className = `trash-can ${trashCanTypes[i].type}`;
-
-          // Different positions based on floor number
-          if (floorNumber % 2 === 0) {
-            trashCan.style.left = `${20 + i * 20}%`;
-            trashCan.style.top = "70%";
-          } else {
-            trashCan.style.left = `${15 + i * 20}%`;
-            trashCan.style.top = "72%";
-          }
-
-          trashCan.textContent = trashCanTypes[i].label;
-          trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`;
-          trashCan.classList.add("tooltip");
-
-          layout.appendChild(trashCan);
-        }
-
-        return layout;
-      }
-
-      // Function to create generic floor layout
-      function createGenericFloorLayout(buildingId, floorNumber) {
-        const layout = document.createElement("div");
-        layout.className = "floor-layout";
-        layout.style.position = "relative";
-
-        // Floor title
-        const title = document.createElement("h3");
-        title.textContent = `${buildings[buildingId].name} - Floor ${floorNumber}`;
-        title.style.textAlign = "center";
-        title.style.padding = "10px";
-        title.style.margin = "0";
-        title.style.backgroundColor = "#4d774e";
-        title.style.color = "white";
-        layout.appendChild(title);
-
-        // Main corridor
-        const corridor = document.createElement("div");
-        corridor.style.position = "absolute";
-        corridor.style.left = "10%";
-        corridor.style.top = "60px";
-        corridor.style.width = "80%";
-        corridor.style.height = "20%";
-        corridor.style.backgroundColor = "#f0f0f0";
-        layout.appendChild(corridor);
-
-        // Rooms layout
-        const roomsPerFloor = 4 + floorNumber; // Different number of rooms per floor
-        const roomWidth = 80 / roomsPerFloor; // Distribute rooms evenly
-
-        for (let i = 0; i < roomsPerFloor; i++) {
-          const room = document.createElement("div");
-          room.className = "room";
-          room.style.left = `${10 + i * roomWidth}%`;
-          room.style.top = "120px";
-          room.style.width = `${roomWidth - 2}%`;
-          room.style.height = "40%";
-
-          // Different colors for different buildings
-          const hue = (buildingId.charCodeAt(0) * 20 + floorNumber * 30) % 360;
-          room.style.backgroundColor = `hsl(${hue}, 70%, 60%)`;
-
-          room.textContent = `${buildingId.toUpperCase()}${floorNumber}${i+1}`;
-          layout.appendChild(room);
-        }
-
-        // Stairs and elevators
-        const stairsLeft = document.createElement("div");
-        stairsLeft.className = "room stairs";
-        stairsLeft.style.left = "10%";
-        stairsLeft.style.top = "70%";
-        stairsLeft.style.width = "15%";
-        stairsLeft.style.height = "15%";
-        stairsLeft.textContent = "Stairs";
-        layout.appendChild(stairsLeft);
-
-        const elevatorCenter = document.createElement("div");
-        elevatorCenter.className = "room elevator";
-        elevatorCenter.style.left = "40%";
-        elevatorCenter.style.top = "70%";
-        elevatorCenter.style.width = "20%";
-        elevatorCenter.style.height = "15%";
-        elevatorCenter.textContent = "Elevator";
-        layout.appendChild(elevatorCenter);
-
-        const stairsRight = document.createElement("div");
-        stairsRight.className = "room stairs";
-        stairsRight.style.right = "10%";
-        stairsRight.style.top = "70%";
-        stairsRight.style.width = "15%";
-        stairsRight.style.height = "15%";
-        stairsRight.textContent = "Stairs";
-        layout.appendChild(stairsRight);
-
-        // Add trash cans in different positions based on floor
-        const trashCanTypes = [
-          { type: "recycling", label: "R" },
-          { type: "hazardous", label: "H" },
-          { type: "organic", label: "O" },
-          { type: "general", label: "G" }
-        ];
-
-        for (let i = 0; i < 4; i++) {
-          const trashCan = document.createElement("div");
-          trashCan.className = `trash-can ${trashCanTypes[i].type}`;
-
-          // Place trash cans in different locations based on floor
-          const xPos = (20 + i * 20 + floorNumber * 5) % 70 + 10;
-          const yPos = floorNumber % 2 === 0 ? 85 : 90;
-
-          trashCan.style.left = `${xPos}%`;
-          trashCan.style.top = `${yPos}%`;
-
-          trashCan.textContent = trashCanTypes[i].label;
-          trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`;
-          trashCan.classList.add("tooltip");
-
-          layout.appendChild(trashCan);
-        }
-
-        return layout;
-      }
-    </script>
-  </body>
+</body>
 </html>
