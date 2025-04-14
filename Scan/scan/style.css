@@ -108,7 +108,7 @@ h1 {
     align-items: center;
     background: radial-gradient(circle at center, #9DC88D, #f7f7f7);
     padding: 50px;
-    padding-top: 0px;
+    padding-top: 35px;
     border-radius: 30px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
     width: 90%;
@@ -138,9 +138,8 @@ h1 {
 .info {
     flex: 1;
     text-align: center;
-    padding: 30px;
+    padding: 0px;
     color: #182916;
-
 }
 
 p{
@@ -148,15 +147,16 @@ p{
 }
 
 .scanner {
-    width: 200px;
-    min-height: 200px;
+    min-width: 450px;
+    min-height: 300px;
     background: white;
-    border-radius: 10px;
+    border-radius: 33px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/*
 .scanner img {
     width: 100%;
     max-width: 100%;
@@ -164,6 +164,8 @@ p{
 }
 
 .scanner-btn {
+    height: 300px;
+    width: 450px;
     background: none;
     border: none;
     padding: 0;
@@ -175,9 +177,11 @@ p{
 
 .scanner-btn img {
     width: 100%;
-    max-width: 100%;
+    height: 100%;
+    border-radius: 0;
     transition: transform 0.2s ease-in-out;
 }
+*/
 
 .scanner-btn:hover img {
     transform: scale(1.1); 
@@ -244,7 +248,7 @@ p{
 /*FOOTER*/
 
 .footer {
-    background-color: #4D774E;
+    background-color: #9DC88D;
     color: white;
     margin: auto;
     width: 100%;
@@ -256,6 +260,7 @@ p{
     max-width: 1000px;
     margin: auto;
     margin-top: 15px;
+    
   }
   
   .footer-text {
@@ -270,12 +275,14 @@ p{
   .about h3 {
     font-size: 35px;
     font-family: "Poppins", sans-serif;
+    margin-top: 30px;
   }
   
   .about p {
     font-size: 18px;
-    font-weight: lighter;
+    font-weight: regular;
     font-family: "Poppins", sans-serif;
+    color: white;
   }
   
   .social-icons {
@@ -360,6 +367,7 @@ p{
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 5;
   }
   
   .popup-content {
@@ -398,40 +406,3 @@ p{
     font-size: 20px;
     cursor: pointer;
   }
-
-  /* Loading spinner */
-.spinner {
-    width: 40px;
-    height: 40px;
-    margin: 20px auto;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #4D774E;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Results modal */
-.results-content {
-    animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Error modal */
-.error-modal div {
-    animation: shake 0.5s ease;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-5px); }
-    40%, 80% { transform: translateX(5px); }
-}
