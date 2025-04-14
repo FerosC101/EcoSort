@@ -157,14 +157,15 @@
         }
 
         .scanner {
-            width: 200px;
-            min-height: 200px;
+            width: 400px; /* Increased from 200px */
+            min-height: 300px; /* Increased from 200px */
             background: white;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
         .scanner img {
@@ -198,7 +199,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            display: none;
+            display: flex; /* Changed from none to flex to always show */
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -210,9 +211,10 @@
         #camera-feed {
             width: 100%;
             max-width: 100%;
-            height: auto;
+            height: 100%;
             border-radius: 8px;
             background: black;
+            object-fit: cover;
         }
 
         .camera-controls {
@@ -221,6 +223,8 @@
             margin-top: 10px;
             width: 100%;
             justify-content: center;
+            position: absolute;
+            bottom: 20px;
         }
 
         .capture-btn, .cancel-btn {
@@ -293,6 +297,8 @@
             }
 
             .scanner {
+                width: 90%;
+                min-height: 250px;
                 margin-bottom: 20px;
             }
 
@@ -528,12 +534,8 @@
                     <video id="camera-feed" autoplay playsinline></video>
                     <div class="camera-controls">
                         <button id="capture-btn" class="capture-btn">Capture</button>
-                        <button id="cancel-camera" class="cancel-btn">Cancel</button>
                     </div>
                 </div>
-                <button class="scanner-btn" id="open-camera">
-                    <img src="ScanSquare.png" alt="Scanner">
-                </button>
             </div>
             <div class="info">
                 <h3>UPLOAD AN IMAGE</h3>
@@ -625,17 +627,12 @@
             // Camera elements and functionality
             const cameraContainer = document.getElementById('camera-container');
             const cameraFeed = document.getElementById('camera-feed');
-            const openCameraBtn = document.getElementById('open-camera');
             const captureBtn = document.getElementById('capture-btn');
-            const cancelCameraBtn = document.getElementById('cancel-camera');
             let stream = null;
 
-            // Open camera
-            openCameraBtn.addEventListener('click', async function() {
+            // Start camera automatically when page loads
+            async function startCamera() {
                 try {
-                    openCameraBtn.style.display = 'none';
-                    cameraContainer.style.display = 'flex';
-
                     stream = await navigator.mediaDevices.getUserMedia({
                         video: {
                             facingMode: 'environment', // Prefer rear camera
@@ -649,9 +646,8 @@
                 } catch (err) {
                     console.error("Camera error:", err);
                     showErrorModal("Could not access camera. Please check permissions.");
-                    resetCameraUI();
                 }
-            });
+            }
 
             // Capture image
             captureBtn.addEventListener('click', function() {
@@ -666,28 +662,8 @@
                 canvas.toBlob(function(blob) {
                     const file = new File([blob], 'capture.jpg', { type: 'image/jpeg' });
                     classifyImage(file, true);
-                    closeCamera();
                 }, 'image/jpeg', 0.8);
             });
-
-            // Cancel camera
-            cancelCameraBtn.addEventListener('click', function() {
-                closeCamera();
-            });
-
-            function closeCamera() {
-                if (stream) {
-                    stream.getTracks().forEach(track => track.stop());
-                    stream = null;
-                }
-                cameraFeed.srcObject = null;
-                resetCameraUI();
-            }
-
-            function resetCameraUI() {
-                cameraContainer.style.display = 'none';
-                openCameraBtn.style.display = 'block';
-            }
 
             // Upload functionality
             const uploadInput = document.getElementById("upload-input");
@@ -861,6 +837,9 @@
                     document.body.removeChild(modal);
                 });
             }
+
+            // Start the camera when page loads
+            startCamera();
         });
     </script>
 </body>
