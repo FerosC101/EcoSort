@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Your Waste</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <h1 class="logo">
+            <img src="logopng.png" alt="Logo" id="logo"/>
+        </h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="OuterBox">
+        <div class="HeaderContainer">
+            <h1>SCAN YOUR WASTE</h1>
+        </div>
+    </div>
+    <div class="OuterContent">
+        <div class="content-box">
+            <div class="info">
+                <h3>SCAN YOUR WASTE</h3>
+                <p>Point the camera to the waste to classify it!</p>
+            </div>
+            <div class="scanner">
+                <div class="camera-container" id="camera-container">
+                    <video id="camera-feed" autoplay playsinline></video>
+                    <div class="camera-controls">
+                        <button id="capture-btn" class="capture-btn">Capture</button>
+                    </div>
+                </div>
+            </div>
+            <div class="info">
+                <h3>UPLOAD AN IMAGE</h3>
+                <p>Upload an image to classify it!</p>
+            </div>
+        </div>
+        <div class="upload-box">
+            <label for="upload-input" class="upload-btn">
+                 Upload Image
+            </label>
+            <input type="file" id="upload-input" accept="image/*">
+        </div>
+    </div>
+
+  <footer class ="footer">
+    <div class ="footer-container">
+        <!--Abous us Section-->
+        <div class="about">
+            <h3>About Us</h3>
+            <p>LenLens is a smart waste system that can classify your waste trash.</p>
+            <br>
+            <h3>Socials</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="dot">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="dot">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="dot">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>            
+        </div>
+
+        <!--Quick Links-->
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
+        </div>
+
+        <!--Contact Us-->
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@gmail.com</p>
+            <p>Phone: 09123456789</p>
+            <div class = "openButton">
+                <button  id="openForm">Send Direct Message</button>
+            </div>
+        </div>
+    </div>
+    <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+</footer>
+
+<!-- Popup Form-->
+ <div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span id="closeForm" class="close">&times;</span>
+        <h2>Send Us a Direct Message</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Message"></textarea>
+            <br>
+            <div class="sendButton">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+ </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
