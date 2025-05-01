@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fdfbf2;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    position: absolute;
+    top: 30px;
+    left: 80px;
+    right: 480px;
+    height: 60px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 1000;
+}
+
+.logo {
+    height: 40px;
+}
+
+nav a {
+    margin: 0 18px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #444;
+}
+
+    nav a.active {
+        color: black;
+    }
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 120px;
+    height: 100%;
+}
+
+.intro {
+    display: flex;
+    align-items: center;
+    margin-left: 100px;
+    margin-bottom: 30px;
+}
+
+.intro-icon {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.intro-text h1 {
+    font-size: 38px;
+    font-weight: 800;
+}
+
+.intro-text p {
+    font-size: 16px;
+    color: #444;
+}
+
+.bins {
+    position: absolute;
+    bottom: 240px;
+    left: 100px;
+    display: flex;
+    gap: 120px;
+}
+
+.bin {
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.label {
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.green {
+    background-color: #d2f0ca;
+}
+
+.red {
+    background-color: #fdd7d7;
+}
+
+.yellow {
+    background-color: #d9f7c8;
+}
+
+.bin img {
+    width: 180px;
+    height: auto;
+}
+
+.info-box {
+    position: absolute;
+    top: 130px;
+    right: 480px;
+    width: 400px;
+    height: 540px;
+    background-color: #7c9c77;
+    border-radius: 30px;
+    color: white;
+    padding: 25px;
+    font-size: 16px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+    line-height: 1.5;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.qr {
+    position: absolute;
+    bottom: 250px;
+    right: 610px;
+    text-align: center;
+}
+
+    .qr img {
+        width: 125px;
+        height: 125px;
+        margin-bottom: 8px;
+    }
