@@ -269,14 +269,13 @@
 
       /* Trash cans */
       .trash-can {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
-        position: absolute;
         z-index: 10;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-evenly;
         color: white;
         font-weight: bold;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -325,3 +324,5 @@
         z-index: 100;
         font-family: "Roboto Flex-Regular", Helvetica;
       }
+
+ 
