@@ -11,10 +11,10 @@ const buildings = {
     description: "The Technological Arts Office (TAO) is focused on creative digital arts and design. This building contains design studios, multimedia labs, and exhibition spaces for students to showcase their work. It serves as a hub for interdisciplinary collaboration between technology and creative arts.",
     floors: 2
   },
-  steehub: {
+  steerhub: {
     name: "Science, Technology, Engineering, and Environment Hub",
     description: "A hub for interdisciplinary research and collaboration focusing on sustainable technologies and environmental science. STEEHUB houses research laboratories, seminar rooms, and collaborative workspaces designed to foster innovation across different scientific disciplines.",
-    floors: 3
+    floors: 5
   },
   fdc: {
     name: "Faculty Development Center",
@@ -34,7 +34,7 @@ const buildings = {
   ceafa: {
     name: "College of Engineering and Architecture Faculty Association",
     description: "Faculty offices and meeting rooms for engineering and architecture departments. CEAFA provides spaces for faculty collaboration, student consultations, and administrative functions for the engineering and architecture programs. It also houses small exhibition spaces for student design projects.",
-    floors: 4
+    floors: 5
   }
 };
 
@@ -114,7 +114,38 @@ function showBuildingDetails(buildingId) {
       // Create CICS floor layout
       const floorLayout = createCICSFloorLayout(i);
       floorContent.appendChild(floorLayout);
-    } else {
+    } 
+    else if (buildingId === "fdc") {
+      // Create FDC floor layout
+      const floorLayout = createFDCFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else if (buildingId === "steerhub") {
+      // Create Steer Hub floor layout
+      const floorLayout = createSteerHubFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else if (buildingId === "tao") {
+      // Create TAO floor layout
+      const floorLayout = createTAOFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else if (buildingId === "cit") {
+      // Create CIT floor layout
+      const floorLayout = createCITFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else if (buildingId === "coe") {
+      // Create COE floor layout
+      const floorLayout = createCOEFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else if (buildingId === "ceafa") {
+      // Create CEAFA floor layout
+      const floorLayout = createCEAFAFloorLayout(i);
+      floorContent.appendChild(floorLayout);
+    } 
+    else {
       // Create generic floor layout for other buildings
       const floorLayout = createGenericFloorLayout(buildingId, i);
       floorContent.appendChild(floorLayout);
@@ -136,6 +167,509 @@ function showBuildingDetails(buildingId) {
 
   // Show the modal
   modal.style.display = "block";
+}
+
+// Function to create CIT floor layout
+function createCITFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `CIT Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
+  }
+
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+  
+// Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
+  
+  return layout;
+}
+
+// Function to create TAO floor layout
+function createTAOFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `TAO Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
+  }
+
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  // Trash cans
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
+
+  return layout;
+}
+
+// Function to create Steer Hub floor layout
+function createSteerHubFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `Steer Hub Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
+  }
+
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  // Trash cans
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
+
+  return layout;
+}
+
+// Function to create FDC floor layout
+function createFDCFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `FDC Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
+  }
+
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  // Trash cans
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
+
+  return layout;
 }
 
 // Function to create CICS floor layout
@@ -187,11 +721,11 @@ function createCICSFloorLayout(floorNumber) {
   // Rooms on top row - different for each floor
   const roomColors = [
     "#7cb342", // light green
-    "#5c6bc0", // indigo
-    "#9c27b0", // purple
-    "#00796b", // teal
-    "#ef6c00", // orange
-    "#d32f2f"  // red
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
   ];
 
   const roomLabels = [
@@ -233,27 +767,286 @@ function createCICSFloorLayout(floorNumber) {
     { type: "general", label: "G" }
   ];
 
-  // Position trash cans
-  for (let i = 0; i < 4; i++) {
-    const trashCan = document.createElement("div");
-    trashCan.className = `trash-can ${trashCanTypes[i].type}`;
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
 
-    // Different positions based on floor number
-    if (floorNumber % 2 === 0) {
-      trashCan.style.left = `${20 + i * 20}%`;
-      trashCan.style.top = "70%";
-    } else {
-      trashCan.style.left = `${15 + i * 20}%`;
-      trashCan.style.top = "72%";
-    }
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
 
-    trashCan.textContent = trashCanTypes[i].label;
-    trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`;
-    trashCan.classList.add("tooltip");
+  return layout;
+}
 
-    layout.appendChild(trashCan);
+// Function to create COE floor layout
+function createCOEFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `CICS Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
   }
 
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  // Trash cans
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
+
+  return layout;
+}
+
+
+// Function to create CEAFA floor layout
+function createCEAFAFloorLayout(floorNumber) {
+  const layout = document.createElement("div");
+  layout.className = "floor-layout";
+  layout.style.position = "relative";
+
+  // Floor title
+  const title = document.createElement("h3");
+  title.textContent = `CEAFA Floor ${floorNumber}`;
+  title.style.textAlign = "center";
+  title.style.padding = "10px";
+  title.style.margin = "0";
+  title.style.backgroundColor = "#4d774e";
+  title.style.color = "white";
+  layout.appendChild(title);
+
+  // Main corridor
+  const corridor = document.createElement("div");
+  corridor.style.position = "absolute";
+  corridor.style.left = "0";
+  corridor.style.top = "50px";
+  corridor.style.width = "100%";
+  corridor.style.height = "60%";
+  corridor.style.backgroundColor = "#f0f0f0";
+  layout.appendChild(corridor);
+
+  // Stairs left
+  const stairsLeft = document.createElement("div");
+  stairsLeft.className = "room stairs";
+  stairsLeft.style.left = "0";
+  stairsLeft.style.top = "50px";
+  stairsLeft.style.width = "15%";
+  stairsLeft.style.height = "60%";
+  stairsLeft.textContent = "Stairs";
+  layout.appendChild(stairsLeft);
+
+  // Stairs right
+  const stairsRight = document.createElement("div");
+  stairsRight.className = "room stairs";
+  stairsRight.style.right = "0";
+  stairsRight.style.top = "50px";
+  stairsRight.style.width = "15%";
+  stairsRight.style.height = "60%";
+  stairsRight.textContent = "Stairs";
+  layout.appendChild(stairsRight);
+
+  // Rooms on top row - different for each floor
+  const roomColors = [
+    "#7cb342", // light green
+    "#7cb342", // indigo
+    "#7cb342", // purple
+    "#7cb342", // teal
+    "#7cb342", // orange
+    "#7cb342"  // red
+  ];
+
+  const roomLabels = [
+    `${floorNumber}01`,
+    `${floorNumber}02`,
+    `${floorNumber}03`,
+    `${floorNumber}04`,
+    `${floorNumber}05`,
+    `${floorNumber}06`
+  ];
+
+  for (let i = 0; i < 6; i++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.style.left = `${15 + i * 11.67}%`;
+    room.style.top = "50px";
+    room.style.width = "11.67%";
+    room.style.height = "60%";
+    room.style.backgroundColor = roomColors[i];
+    room.textContent = roomLabels[i];
+    layout.appendChild(room);
+  }
+
+  // Elevator
+  const elevator = document.createElement("div");
+  elevator.className = "room elevator";
+  elevator.style.left = "40%";
+  elevator.style.top = "80%";
+  elevator.style.width = "20%";
+  elevator.style.height = "15%";
+  elevator.textContent = "Elevator";
+  layout.appendChild(elevator);
+
+  // Trash cans
+  const trashCanTypes = [
+    { type: "recycling", label: "R" },
+    { type: "hazardous", label: "H" },
+    { type: "organic", label: "O" },
+    { type: "general", label: "G" }
+  ];
+
+  // Create a container for all trash cans to ensure they stay in a line
+const trashCanContainer = document.createElement("div");
+trashCanContainer.style.position = "absolute";
+trashCanContainer.style.display = "flex";
+trashCanContainer.style.flexDirection = "row";
+trashCanContainer.style.justifyContent = "space-between";
+trashCanContainer.style.width = "30%";
+trashCanContainer.style.left = "35%";
+trashCanContainer.style.top = "73%";
+layout.appendChild(trashCanContainer);
+
+// Position trash cans in a perfect horizontal line
+for (let i = 0; i < trashCanTypes.length; i++) { 
+  const trashCan = document.createElement("div"); 
+  trashCan.className = `trash-can ${trashCanTypes[i].type}`; 
+  
+  // Remove individual positioning and let flex handle it
+  trashCan.style.position = "relative";
+  trashCan.style.top = "0";
+  trashCan.style.left = "0";
+ 
+  trashCan.textContent = trashCanTypes[i].label; 
+  trashCan.dataset.tooltip = `${trashCanTypes[i].type.charAt(0).toUpperCase() + trashCanTypes[i].type.slice(1)} Waste`; 
+  trashCan.classList.add("tooltip"); 
+   
+  trashCanContainer.appendChild(trashCan); // Add to container instead of layout
+}
   return layout;
 }
 
@@ -359,3 +1152,4 @@ function createGenericFloorLayout(buildingId, floorNumber) {
 
   return layout;
 }
+
