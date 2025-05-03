@@ -1,0 +1,4 @@
+Material: error
+Material Confidence: 0.0%
+Waste Group: error
+Group Confidence: 0.0%
