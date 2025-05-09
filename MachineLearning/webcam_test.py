@@ -91,7 +91,7 @@ def main():
 
         # Test model with a dummy input
         print("Testing model with dummy input...")
-        dummy_input = np.random.random((1, 300, 300, 3))
+        dummy_input = np.random.random((1, 224, 224, 3))
         dummy_output = model.predict(dummy_input, verbose=0)
         print(f"Model prediction works! Output type: {type(dummy_output)}")
     except Exception as e:
@@ -156,7 +156,7 @@ def main():
 
             try:
                 # Preprocess image
-                img = cv2.resize(frame, (300, 300))
+                img = cv2.resize(frame, (224, 224))
                 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
                 img = img / 255.0  # Normalize
                 img = np.expand_dims(img, axis=0)  # Add batch dimension

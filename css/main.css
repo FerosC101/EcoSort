@@ -1,0 +1,164 @@
+:root {
+    --color-amber-50: #fffbeb;
+    --color-teal-900: #134e4a;
+    --color-stone-400: #a8a29e;
+    --color-stone-900: #1c1917;
+    --shadow-default: 5px 5px 15px rgba(0, 0, 0, 0.25);
+    --shadow-large: 5px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.maps-container {
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    padding: 3.5rem 5rem;
+    background-color: var(--color-amber-50);
+}
+
+.navigation-bar {
+    display: flex;
+    overflow: hidden;
+    justify-content: space-between;
+    align-items: flex-end;
+    align-self: center;
+    padding: 1.5rem 2.75rem;
+    width: 100%;
+    max-width: 1720px;
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-default);
+}
+
+.nav-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    align-items: center;
+    min-width: 15rem;
+}
+
+.nav-item {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--color-teal-900);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.campus-map-section {
+    align-self: flex-end;
+    margin-top: 1.75rem;
+    width: 100%;
+    max-width: 1755px;
+    display: flex;
+    gap: 1.25rem;
+}
+
+.map-container {
+    width: 62%;
+    height: 600px;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-default);
+}
+
+.locations-container {
+    width: 38%;
+    margin-left: 1.25rem;
+}
+
+.title-container {
+    display: flex;
+    overflow: hidden;
+    gap: 0.625rem;
+    align-items: flex-start;
+    align-self: flex-start;
+    padding: 0.25rem;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: var(--shadow-large);
+    margin-top: 1rem;
+}
+
+.campus-title {
+    overflow: hidden;
+    padding: 4rem;
+    background-color: var(--color-stone-400);
+    border-radius: 50px;
+    font-size: 3.75rem;
+    font-weight: 800;
+    letter-spacing: 2.8px;
+    line-height: 108px;
+    margin: 0;
+}
+
+.location-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.25rem;
+    align-items: center;
+    margin-top: 2.75rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--color-stone-900);
+}
+
+.location-button {
+    display: flex;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-default);
+    border: none;
+    cursor: pointer;
+}
+
+.location-button span {
+    overflow: hidden;
+    padding: 1.25rem 2rem;
+    background-color: var(--color-stone-400);
+    background-opacity: 0.6;
+    border-radius: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .maps-container {
+        padding: 1.25rem;
+    }
+
+    .navigation-bar {
+        padding: 1.25rem;
+        max-width: 100%;
+    }
+
+    .campus-map-section {
+        flex-direction: column;
+    }
+
+    .map-container {
+        width: 100%;
+        margin-top: 2.5rem;
+    }
+
+    .locations-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 2.5rem;
+    }
+
+    .campus-title {
+        font-size: 2.25rem;
+        line-height: 86px;
+        padding: 1.25rem;
+    }
+}

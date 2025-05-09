@@ -65,6 +65,10 @@
         .nav-links a:hover {
             background-color: #e3e3e3;
         }
+
+        .active-nav {
+            border-bottom: 3px solid #4D774E;
+        }
         /* Nav-End*/
 
         .HeaderContainer{
@@ -157,8 +161,8 @@
         }
 
         .scanner {
-            width: 400px; /* Increased from 200px */
-            min-height: 300px; /* Increased from 200px */
+            width: 400px;
+            min-height: 300px;
             background: white;
             border-radius: 10px;
             display: flex;
@@ -199,7 +203,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            display: flex; /* Changed from none to flex to always show */
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -510,11 +514,11 @@
         </h1>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Scan</a></li>
-                <li><a href="#">Maps</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/scan" class="active-nav">Scan</a></li>
+                <li><a href="/maps">Maps</a></li>
+                <li><a href="/contact">Contact Us</a></li>
             </ul>
         </nav>
     </header>
@@ -569,10 +573,10 @@
             <div class="quick-links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="#">Guide</a></li>
-                    <li><a href="#">Scan</a></li>
-                    <li><a href="#">Maps</a></li>
+                    <li><a href="/scan">Scan</a></li>
+                    <li><a href="/maps">Maps</a></li>
                 </ul>
             </div>
 
@@ -604,6 +608,80 @@
     </div>
 
     <script>
+        // Campus buildings data - same as in index.html
+        const campusBuildings = {
+            "cit": {
+                lat: 13.785057180528899,
+                lng: 121.07356121247503,
+                name: "College of Information Technology",
+                description: "Houses IT and CS departments with computer labs, classrooms, and faculty offices.",
+                facilities: ["Computer Labs", "Lecture Halls", "Student Lounge"],
+                svgId: "cit-building",
+                floors: 5,
+                trashcans: "Trashcans on each of the 5 floors"
+            },
+            "steerhub": {
+                lat: 13.78465215436254,
+                lng: 121.07370656447414,
+                name: "STEER Hub",
+                description: "Student Technology, Entrepreneurship, and Research Hub - a collaborative space for innovation and student activities.",
+                facilities: ["Co-working Space", "Conference Rooms", "Innovation Lab"],
+                svgId: "steerhub-building",
+                floors: 5,
+                trashcans: "Trashcans on each of the 5 floors"
+            },
+            "tao": {
+                lat: 13.784976703075227,
+                lng: 121.07405568096641,
+                name: "TAO Building",
+                description: "Technology and Arts Organization - houses multimedia labs and creative studios for digital arts.",
+                facilities: ["Media Labs", "Recording Studio", "Design Spaces"],
+                svgId: "tao-building",
+                floors: 2,
+                trashcans: "Trashcans on both floors"
+            },
+            "sparta": {
+                lat: 13.784221,
+                lng: 121.073998,
+                name: "Sparta Gymnasium",
+                description: "Modern sports complex featuring indoor courts, fitness center, and swimming facilities.",
+                facilities: ["Basketball Courts", "Swimming Pool", "Fitness Center"],
+                svgId: "sparta-building",
+                floors: 1,
+                trashcans: "Multiple trashcans throughout the gymnasium"
+            },
+            "cics": {
+                lat: 13.783788,
+                lng: 121.073957,
+                name: "CICS Building",
+                description: "College of Information and Computing Sciences - main building for computer science and IT programs.",
+                facilities: ["Advanced Computing Labs", "Research Centers", "Auditorium"],
+                svgId: "cics-building",
+                floors: 5,
+                trashcans: "Trashcans on each of the 5 floors"
+            },
+            "einstein": {
+                lat: 13.78413,
+                lng: 121.07474,
+                name: "Albert Einstein Building",
+                description: "Home to science departments with specialized laboratories for physics, chemistry, and research facilities.",
+                facilities: ["Science Labs", "Observatory", "Research Spaces"],
+                svgId: "einstein-building",
+                floors: 5,
+                trashcans: "Trashcans on each of the 5 floors"
+            },
+            "aces": {
+                lat: 13.78355264408102,
+                lng: 121.07422831853955,
+                name: "RGR Building",
+                description: "Ralph G. Recto Building - houses engineering programs and computational research.",
+                facilities: ["Engineering Labs", "Simulation Center", "Workshop Spaces"],
+                svgId: "aces-building",
+                floors: 3,
+                trashcans: "Trashcans on each of the 3 floors"
+            }
+        };
+
         document.addEventListener("DOMContentLoaded", function () {
             // Existing popup form code
             const openFormBtn = document.getElementById("openForm");
@@ -741,7 +819,62 @@
             }
 
             function showResultsModal(data, isCamera) {
-                // Create modal
+                // First get user's location
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const userLat = position.coords.latitude;
+                            const userLng = position.coords.longitude;
+                            const nearestBuilding = findNearestBuilding(userLat, userLng);
+
+                            // Show modal with building info
+                            showModalWithBuildingInfo(data, nearestBuilding, isCamera);
+                        },
+                        (error) => {
+                            // If geolocation fails, just show regular results
+                            showModalWithBuildingInfo(data, null, isCamera);
+                        }
+                    );
+                } else {
+                    // Geolocation not supported
+                    showModalWithBuildingInfo(data, null, isCamera);
+                }
+            }
+
+            function findNearestBuilding(userLat, userLng) {
+                let nearest = null;
+                let minDistance = Infinity;
+
+                for (const [id, building] of Object.entries(campusBuildings)) {
+                    const distance = calculateDistance(
+                        userLat, userLng,
+                        building.lat, building.lng
+                    );
+
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearest = building;
+                        nearest.id = id;
+                    }
+                }
+
+                return nearest;
+            }
+
+            function calculateDistance(lat1, lon1, lat2, lon2) {
+                // Haversine formula to calculate distance between two coordinates
+                const R = 6371; // Earth's radius in km
+                const dLat = (lat2 - lat1) * Math.PI / 180;
+                const dLon = (lon2 - lon1) * Math.PI / 180;
+                const a =
+                    Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                    Math.sin(dLon/2) * Math.sin(dLon/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                return R * c;
+            }
+
+            function showModalWithBuildingInfo(data, nearestBuilding, isCamera) {
                 const modal = document.createElement('div');
                 modal.className = 'results-modal';
                 modal.style.position = 'fixed';
@@ -755,11 +888,32 @@
                 modal.style.alignItems = 'center';
                 modal.style.zIndex = '1000';
 
-                // Determine color based on waste type
-                const typeColor = data.waste_type === 'Recyclable' ? '#4CAF50' :
-                                 data.waste_type === 'Hazardous' ? '#F44336' : '#FF9800';
+                const typeColor = data.waste_type === 'recyclable' ? '#4CAF50' :
+                                data.waste_type === 'hazardous' ? '#F44336' :
+                                data.waste_type === 'biodegradable' ? '#FF9800' : '#9E9E9E';
 
-                // Modal content
+                let buildingInfo = '';
+                if (nearestBuilding) {
+                    buildingInfo = `
+                        <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 8px;">
+                            <h3 style="margin-bottom: 10px;">Nearest Disposal Location</h3>
+                            <p><strong>Building:</strong> ${nearestBuilding.name}</p>
+                            <p><strong>Floors:</strong> ${nearestBuilding.floors}</p>
+                            <p><strong>Trashcans:</strong> ${nearestBuilding.trashcans}</p>
+                            <button onclick="showBuildingOnMap('${nearestBuilding.id}')"
+                                style="margin-top: 10px; padding: 8px 15px; background: #4D774E; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                Show on Map
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    buildingInfo = `
+                        <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 8px;">
+                            <p>Could not determine your location. Please enable location services for nearest disposal information.</p>
+                        </div>
+                    `;
+                }
+
                 modal.innerHTML = `
                     <div class="results-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%;">
                         <h2 style="color: #164A41; margin-bottom: 20px;">Classification Results</h2>
@@ -770,25 +924,36 @@
                             </div>
                         ` : ''}
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Category:</strong> ${data.category}
+                        <div style="margin-bottom: 15px; text-align: center;">
+                            <strong style="font-size: 1.2em;">Waste Type:</strong>
+                            <span style="color: ${typeColor}; font-weight: bold; font-size: 1.2em;">${data.waste_type.toUpperCase()}</span>
                         </div>
 
-                        <div style="margin-bottom: 15px;">
-                            <strong>Type:</strong>
-                            <span style="color: ${typeColor}; font-weight: bold;">${data.waste_type}</span>
+                        <div style="margin-bottom: 15px; text-align: center;">
+                            <strong style="font-size: 1.2em;">Item:</strong>
+                            <span style="font-weight: bold; font-size: 1.2em;">${data.category}</span>
                         </div>
 
-                        <div style="margin-bottom: 25px;">
-                            <strong>Confidence:</strong> ${(data.confidence * 100).toFixed(1)}%
+                        <div id="detailsContent" style="display: none;" class="details-content">
+                            <div>
+                                <strong>Description:</strong><br>${data.description}
+                            </div>
+                            <div>
+                                <strong>Disposal Instructions:</strong><br>${data.disposal}
+                            </div>
+                            <div>
+                                <strong>Examples:</strong><br>${data.examples}
+                            </div>
                         </div>
 
-                        <div style="display: flex; justify-content: space-between;">
-                            <button id="closeResults" style="padding: 10px 20px; background: #4D774E; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        ${buildingInfo}
+
+                        <div style="display: flex; justify-content: space-between; gap: 10px; margin-top: 20px;">
+                            <button id="closeResults" style="padding: 10px 20px; background: #4D774E; color: white; border: none; border-radius: 5px; cursor: pointer; flex: 1;">
                                 Close
                             </button>
-                            <button id="viewDetails" style="padding: 10px 20px; background: #F1B24A; color: white; border: none; border-radius: 5px; cursor: pointer;">
-                                View Details
+                            <button id="toggleDetails" style="padding: 10px 20px; background: #F1B24A; color: white; border: none; border-radius: 5px; cursor: pointer; flex: 1;">
+                                Show Details
                             </button>
                         </div>
                     </div>
@@ -796,14 +961,21 @@
 
                 document.body.appendChild(modal);
 
-                // Add event listeners
-                document.getElementById('closeResults').addEventListener('click', function() {
-                    document.body.removeChild(modal);
+                const detailsContent = modal.querySelector('#detailsContent');
+                const toggleBtn = modal.querySelector('#toggleDetails');
+
+                toggleBtn.addEventListener('click', function() {
+                    if (detailsContent.style.display === 'none') {
+                        detailsContent.style.display = 'block';
+                        toggleBtn.textContent = 'Hide Details';
+                    } else {
+                        detailsContent.style.display = 'none';
+                        toggleBtn.textContent = 'Show Details';
+                    }
                 });
 
-                document.getElementById('viewDetails').addEventListener('click', function() {
-                    // Redirect to afterscan page with results
-                    window.location.href = `afterscan/afterscan.html?category=${encodeURIComponent(data.category)}&type=${encodeURIComponent(data.waste_type)}&confidence=${data.confidence}&image=${encodeURIComponent(data.image_url || '')}`;
+                modal.querySelector('#closeResults').addEventListener('click', function() {
+                    document.body.removeChild(modal);
                 });
             }
 
@@ -837,6 +1009,14 @@
                     document.body.removeChild(modal);
                 });
             }
+
+            // Function to show building on map page
+            window.showBuildingOnMap = function(buildingId) {
+                // Store the building to show in localStorage
+                localStorage.setItem('showBuilding', buildingId);
+                // Redirect to maps page
+                window.location.href = '/maps';
+            };
 
             // Start the camera when page loads
             startCamera();

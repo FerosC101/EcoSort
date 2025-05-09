@@ -7,6 +7,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 import uuid
 import time
+import json
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -16,12 +17,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'Scan', 'uploads')
 SCAN_DIR = os.path.join(BASE_DIR, 'Scan')
 TEMPLATES_DIR = os.path.join(BASE_DIR)
+# Updated path for model files
+ML_DIR = os.path.join(BASE_DIR, 'MachineLearning', 'EcoSort_models')
 
 # Create upload folder if it doesn't exist
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['TEMPLATES_FOLDER'] = TEMPLATES_DIR
+
 
 # Serve static files from root
 @app.route('/')
@@ -31,6 +35,7 @@ def index():
     """
     return send_from_directory(BASE_DIR, 'Entry page/EntryPage.html')
 
+
 @app.route('/enter_app')
 def enter_app():
     """
@@ -38,21 +43,37 @@ def enter_app():
     """
     return redirect('/scan')
 
+
 # Original route - will now only be accessed after clicking "Enter App"
 @app.route('/scan')
 def scan():
     """Serve the scan page"""
     return send_from_directory(SCAN_DIR, 'scan.html')
 
+# Add these routes to App.py
+@app.route('/about')
+def about():
+    return send_from_directory(BASE_DIR, 'about.html')
+
+@app.route('/maps')
+def maps():
+    return send_from_directory(BASE_DIR, 'index.html')
+
+@app.route('/contact')
+def contact():
+    return send_from_directory(BASE_DIR, 'contact.html')  # You'll need to create this file
+
 # Serve Scan directory files
 @app.route('/Scan/<path:filename>')
 def serve_scan_files(filename):
     return send_from_directory(SCAN_DIR, filename)
 
+
 # Serve other HTML files
 @app.route('/<path:filename>')
 def serve_static(filename):
     return send_from_directory(BASE_DIR, filename)
+
 
 # Register custom Cast layer
 class CastLayer(tf.keras.layers.Layer):
@@ -68,150 +89,86 @@ class CastLayer(tf.keras.layers.Layer):
         config.update({"dtype": self.dtype_value})
         return config
 
+
 # Dictionary of custom objects to pass when loading model
 CUSTOM_OBJECTS = {
     'Cast': CastLayer,
-    # Add any other custom objects if needed
 }
 
-def try_load_model_with_savedmodel(model_path):
-    """Attempt to load a model regardless of format (TF SavedModel or H5)"""
-    print("Attempting to load model...")
+# Updated paths to model files
+model_path = os.path.join(ML_DIR, 'final.h5')
+category_map_path = os.path.join(ML_DIR, 'category_map.json')
+group_map_path = os.path.join(ML_DIR, 'group_map.json')
 
-    # First try loading as SavedModel
-    try:
-        model_dir = model_path
-        if model_path.endswith('.h5'):
-            model_dir = model_path.replace('.h5', '')
-
-        if os.path.isdir(model_dir):
-            print(f"Trying to load as SavedModel from directory: {model_dir}")
-            model = tf.keras.models.load_model(model_dir, custom_objects=CUSTOM_OBJECTS)
-            print("Successfully loaded as SavedModel")
-            return model
-    except Exception as e:
-        print(f"Failed to load as SavedModel: {e}")
-
-    # Then try loading as H5
-    try:
-        print(f"Trying to load as H5 file: {model_path}")
-        model = tf.keras.models.load_model(model_path, custom_objects=CUSTOM_OBJECTS)
-        print("Successfully loaded as H5 file")
-        return model
-    except Exception as e:
-        print(f"Failed to load as H5: {e}")
-
-    # If all else fails, try loading with experimental_io_device
-    try:
-        print("Trying with experimental_io_device")
-        model = tf.keras.models.load_model(
-            model_path,
-            custom_objects=CUSTOM_OBJECTS,
-            options=tf.saved_model.LoadOptions(experimental_io_device='/job:localhost')
-        )
-        print("Successfully loaded with experimental_io_device")
-        return model
-    except Exception as e:
-        print(f"Failed with experimental_io_device: {e}")
-
-    raise Exception("Could not load model in any format")
-
-# Use the model path from the debug output
-model_path = os.path.join(BASE_DIR, 'MachineLearning', 'waste_classifier_best.h5')
-
-print(f"Looking for model at: {model_path}")
-print(f"File exists: {os.path.exists(model_path)}")
-
-# Attempt to find the model file with various paths
-model_paths_to_try = [
-    model_path,
-    model_path.replace('.h5', ''),  # Try directory for SavedModel format
-    os.path.join(BASE_DIR, 'waste_classifier_best.h5'),
-    os.path.join(BASE_DIR, 'model'),
-    os.path.join(BASE_DIR, 'saved_model')
-]
-
-# Load model with custom objects if model file exists
+# Initialize model and mappings
 model = None
-for path in model_paths_to_try:
-    if os.path.exists(path):
-        try:
-            model = try_load_model_with_savedmodel(path)
-            print(f"Model loaded successfully from {path}!")
-            break
-        except Exception as e:
-            print(f"Error loading model from {path}: {str(e)}")
+idx_to_class = {}
+idx_to_group = {}
 
-if model is None:
-    print("Model file not found. Please make sure it exists before running the application.")
+try:
+    # Check if model files exist
+    if not os.path.exists(model_path):
+        print(f"Model file not found at: {model_path}")
+        print(f"Looking for model in: {ML_DIR}")
+        print(f"Contents of ML_DIR: {os.listdir(ML_DIR) if os.path.exists(ML_DIR) else 'Directory not found'}")
 
-# Define waste type categories with colors (BGR format) and examples
+    if not os.path.exists(category_map_path):
+        print(f"Category map file not found at: {category_map_path}")
+
+    if not os.path.exists(group_map_path):
+        print(f"Group map file not found at: {group_map_path}")
+
+    # Load model
+    model = tf.keras.models.load_model(model_path, custom_objects=CUSTOM_OBJECTS)
+
+    # Load category and group mappings
+    with open(category_map_path) as f:
+        category_map = json.load(f)
+        idx_to_class = {v: k for k, v in category_map.items()}
+
+    with open(group_map_path) as f:
+        group_map = json.load(f)
+        idx_to_group = {int(k): v for k, v in group_map.items()}
+
+    print("Model and mappings loaded successfully!")
+except Exception as e:
+    print(f"Error loading model or mappings: {str(e)}")
+    # Print the current directory structure to help with debugging
+    print(f"Current directory: {BASE_DIR}")
+    print(f"MachineLearning directory exists: {os.path.exists(os.path.join(BASE_DIR, 'MachineLearning'))}")
+    if os.path.exists(os.path.join(BASE_DIR, 'MachineLearning')):
+        print(f"Contents of MachineLearning dir: {os.listdir(os.path.join(BASE_DIR, 'MachineLearning'))}")
+
+# Define waste type categories with colors (BGR format), descriptions, and disposal instructions
 WASTE_CATEGORIES = {
     "recyclable": {
         "color": (0, 255, 0),  # Green
         "description": "Can be recycled and processed into new items",
+        "disposal": "Place in the recycling bin. Make sure items are clean and dry.",
         "examples": "cardboard, clothes, glass, metal, paper, plastic, shoes"
     },
     "biodegradable": {
         "color": (0, 255, 255),  # Yellow
         "description": "Organic matter that decomposes naturally",
-        "examples": "biological waste"
+        "disposal": "Place in compost bin or designated organic waste container.",
+        "examples": "food scraps, garden waste"
     },
     "hazardous": {
         "color": (0, 0, 255),  # Red
         "description": "Dangerous to health or environment",
-        "examples": "batteries"
+        "disposal": "Take to special collection points. Do not mix with regular trash.",
+        "examples": "batteries, chemicals, electronics"
     },
     "residual": {
         "color": (128, 128, 128),  # Gray
         "description": "Waste that can't be reused or composted",
-        "examples": "general trash"
+        "disposal": "Place in general waste bin. Try to minimize this type of waste.",
+        "examples": "non-recyclable plastics, contaminated materials"
     }
 }
 
-# Updated categories list
-CATEGORIES = [
-    "battery",  # hazardous
-    "biological",  # biodegradable
-    "brown-glass",  # recyclable
-    "cardboard",  # recyclable
-    "clothes",  # recyclable
-    "green-glass",  # recyclable
-    "metal",  # recyclable
-    "paper",  # recyclable
-    "plastic",  # recyclable
-    "shoes",  # recyclable
-    "trash",  # residual
-    "white-glass"  # recyclable
-]
+IMG_SIZE = 224
 
-# Map categories to waste types
-CATEGORY_TO_WASTE_TYPE = {
-    # Recyclable Waste
-    "cardboard": "recyclable",
-    "clothes": "recyclable",
-    "green-glass": "recyclable",
-    "white-glass": "recyclable",
-    "brown-glass": "recyclable",
-    "metal": "recyclable",
-    "paper": "recyclable",
-    "plastic": "recyclable",
-    "shoes": "recyclable",
-
-    # Biodegradable Waste
-    "biological": "biodegradable",
-
-    # Hazardous Waste
-    "battery": "hazardous",
-
-    # Residual Waste
-    "trash": "residual"
-}
-
-# Create index to category mapping
-IDX_TO_CATEGORY = {i: category for i, category in enumerate(CATEGORIES)}
-
-IMG_SIZE = 224 # Updated to match the new model requirements
 
 def preprocess_image(image):
     # Resize and convert color
@@ -232,26 +189,19 @@ def classify_image(image):
     img = preprocess_image(image)
 
     # Run the model
-    raw_pred = model.predict(img, verbose=0)
+    det_preds, grp_preds = model.predict(img, verbose=0)
 
-    # If your model has multiple outputs, pick the first one.
-    # If it's just a single array, this is a no-op.
-    if isinstance(raw_pred, list):
-        pred = raw_pred[0]
-    else:
-        pred = raw_pred
+    # Get detailed category prediction
+    det_idx = int(np.argmax(det_preds))
+    det_conf = float(np.max(det_preds))
+    category = idx_to_class.get(det_idx, "unknown")
 
-    # Now ensure it’s a flat 1D numpy array
-    pred = np.asarray(pred).flatten()  # shape (12,) if you have 12 classes
+    # Get waste group prediction
+    grp_idx = int(np.argmax(grp_preds))
+    grp_conf = float(np.max(grp_preds))
+    waste_type = idx_to_group.get(det_idx, "residual")  # Use det_idx to get group from group_map
 
-    # Pick your class
-    predicted_class_idx = np.argmax(pred)
-    confidence = float(pred[predicted_class_idx])
-
-    category = IDX_TO_CATEGORY.get(predicted_class_idx, "unknown")
-    waste_type = CATEGORY_TO_WASTE_TYPE.get(category, "residual")
-
-    return category, waste_type, confidence
+    return category, waste_type, det_conf
 
 
 @app.route('/api/classify', methods=['POST'])
@@ -281,13 +231,19 @@ def handle_classification():
             category, waste_type, confidence = classify_image(image)
 
             # Get additional waste type information
-            waste_info = WASTE_CATEGORIES.get(waste_type, {"description": "Unknown"})
+            waste_info = WASTE_CATEGORIES.get(waste_type, {
+                "color": (255, 255, 255),
+                "description": "Unknown",
+                "disposal": "Please check local waste disposal guidelines",
+                "examples": "Unknown"
+            })
 
             return jsonify({
                 'success': True,
                 'category': category,
                 'waste_type': waste_type,
                 'description': waste_info["description"],
+                'disposal': waste_info["disposal"],
                 'examples': waste_info.get("examples", ""),
                 'confidence': float(confidence),
                 'image_url': f'/uploads/{filename}'
@@ -296,14 +252,17 @@ def handle_classification():
         except Exception as e:
             return jsonify({'success': False, 'error': str(e)}), 500
 
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 
 @app.route('/webcam')
 def webcam_classify():
     """Serve the webcam classification page"""
     return send_from_directory(SCAN_DIR, 'webcam.html')
+
 
 def start_webcam():
     """Function to start webcam classification standalone application"""
@@ -377,7 +336,11 @@ def start_webcam():
         if current_result:
             # Get waste type info
             waste_type = current_result["waste_type"]
-            waste_info = WASTE_CATEGORIES.get(waste_type, {"color": (255, 255, 255), "description": "Unknown"})
+            waste_info = WASTE_CATEGORIES.get(waste_type, {
+                "color": (255, 255, 255),
+                "description": "Unknown",
+                "disposal": "Please check local waste disposal guidelines"
+            })
 
             # Create border around the frame
             border_size = 20
@@ -390,19 +353,24 @@ def start_webcam():
 
             # Display results on the frame
             # Category and waste type
-            cv2.putText(bordered_frame, f"Category: {current_result['category']}",
-                        (border_size + 10, bordered_frame.shape[0] - 120),
+            cv2.putText(bordered_frame, f"Item: {current_result['category'].upper()}",
+                        (border_size + 10, bordered_frame.shape[0] - 150),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, waste_info["color"], 2)
 
             # Add appropriate emoji for waste type
             emoji = "♻️" if waste_type == "recyclable" else "🍃" if waste_type == "biodegradable" else "☣️" if waste_type == "hazardous" else "🚮"
-            cv2.putText(bordered_frame, f"Waste Type: {emoji} {waste_type.upper()}",
-                        (border_size + 10, bordered_frame.shape[0] - 80),
+            cv2.putText(bordered_frame, f"Type: {emoji} {waste_type.upper()}",
+                        (border_size + 10, bordered_frame.shape[0] - 110),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, waste_info["color"], 2)
+
+            # Disposal instructions
+            cv2.putText(bordered_frame, f"Dispose: {waste_info['disposal']}",
+                        (border_size + 10, bordered_frame.shape[0] - 70),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, waste_info["color"], 2)
 
             # Confidence score
             cv2.putText(bordered_frame, f"Confidence: {current_result['confidence']:.2f}",
-                        (border_size + 10, bordered_frame.shape[0] - 40),
+                        (border_size + 10, bordered_frame.shape[0] - 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, waste_info["color"], 2)
 
             # Show the bordered frame
@@ -435,6 +403,7 @@ def start_webcam():
     cap.release()
     cv2.destroyAllWindows()
     print("Webcam application closed.")
+
 
 if __name__ == '__main__':
     # Add a command-line argument parser to support both server and webcam modes
