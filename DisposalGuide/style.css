@@ -55,32 +55,34 @@ main {
 .intro {
     display: flex;
     align-items: center;
-    margin-left: 100px;
-    margin-bottom: 30px;
+    margin-left: 80px;
+    margin-bottom: 0px;
 }
 
 .intro-icon {
-    width: 150px;
+    width: 90px;
     height: auto;
     margin-right: 20px;
 }
 
 .intro-text h1 {
-    font-size: 38px;
+    font-size: 50px;
     font-weight: 800;
 }
 
 .intro-text p {
-    font-size: 16px;
+    font-size: 14px;
     color: #444;
+    margin-top: 6px;
 }
 
 .bins {
     position: absolute;
-    bottom: 240px;
-    left: 100px;
+    bottom: 200px;
+    left: 20px;
     display: flex;
-    gap: 120px;
+    gap: 60px;
+    z-index: 2;
 }
 
 .bin {
@@ -89,6 +91,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .label {
@@ -101,20 +104,24 @@ main {
 }
 
 .green {
-    background-color: #d2f0ca;
+    background-color: #3498db;
+    color: white;
 }
 
 .red {
-    background-color: #fdd7d7;
+    background-color: #e74c3c;
+    color: white;
 }
 
 .yellow {
-    background-color: #d9f7c8;
+    background-color: #f1c40f;
+    color: #222;
 }
 
 .bin img {
     width: 180px;
     height: auto;
+    transition: transform 0.3s ease;
 }
 
 .info-box {
@@ -131,21 +138,50 @@ main {
     box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
     line-height: 1.5;
     overflow-y: auto;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s ease;
 }
-
 
 .qr {
     position: absolute;
-    bottom: 250px;
+    bottom: 225px;
     right: 610px;
     text-align: center;
+    z-index: 1;
 }
 
-    .qr img {
-        width: 125px;
-        height: 125px;
-        margin-bottom: 8px;
-    }
+.qr img {
+    width: 125px;
+    height: 125px;
+    margin-bottom: 8px;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.qr-label {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+}
+
+.label.residual {
+    background-color: #dce9f2;
+    color: #222;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.bin:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.info-box.active {
+    opacity: 1;
+    transform: translateY(0);
+}
