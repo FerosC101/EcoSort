@@ -41,7 +41,7 @@ function showInfo(type) {
 }
 
 function resetInfo() {
-    infoBox.innerHTML = "<div class='info-content'><p>No waste category hovered.</p></div>";
+    infoBox.innerHTML = "<div class='info-content'><p><strong>No waste category hovered.</strong></p></div>";
     infoBox.classList.remove("active");
 }
 
