@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoCart - Smart Waste Management</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-green: #164A41;
@@ -30,57 +32,56 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
-        .navbar {
-            display: flex;
+        /* Navbar */
+        header {
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            background-color: #f5f5f5;
+            margin-left: 75px;
+            margin-right: 75px;
+            margin-top: 10px;
+            height: 50px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            z-index: 10;
         }
 
-        .logo img {
-            height: 40px;
+        #logo {
+            height: 45px;
+            margin: 40px auto 20px;
+            display: block;
         }
 
         .nav-links {
+            list-style-type: none;
             display: flex;
-            list-style: none;
-            gap: 1.5rem;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            display: inline;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--primary-green);
-            font-weight: 500;
-            padding: 0.5rem 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-style: normal;
+            font-size: 18px;
+            color: black;
+            padding: 10px 15px;
             border-radius: 5px;
-            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            background-color: var(--light-green);
-            color: var(--white);
+            background-color: #e3e3e3;
         }
 
-        .nav-links a.active-nav {
-            background-color: var(--secondary-green);
-            color: var(--white);
+        .active-nav {
+            border-bottom: 3px solid #4D774E;
         }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            cursor: pointer;
-        }
+        /* Nav-End*/
 
         /* Hero Section */
         .hero {
@@ -206,186 +207,233 @@
             font-size: 1.5rem;
         }
 
-        /* Footer */
-        .footer {
-            background-color: var(--primary-green);
-            color: var(--white);
-            padding: 3rem 2rem 1rem;
-        }
+   /*FOOTER*/
 
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.footer {
+  background-color: #9DC88D;
+  color: white;
+  width: 100%;
+  padding: 40px 20px 20px;
+  margin-top: 10px;
+}
 
-        .footer-logo img {
-            height: 40px;
-            margin-bottom: 1rem;
-        }
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-        .footer-about p {
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
+.footer-text {
+  color: white;
+}
 
-        .social-icons {
-            display: flex;
-            gap: 1rem;
-        }
+.about {
+  flex: 1 1 300px;
+  max-width: 250px; 
+  margin-top: 20px;
+}
 
-        .social-icons a {
-            color: var(--white);
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
+.about h3 {
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+}
 
-        .social-icons a:hover {
-            color: var(--cream);
-        }
+.about p {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
 
-        .footer-links h3, .footer-contact h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--cream);
-        }
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
 
-        .footer-links ul {
-            list-style: none;
-        }
+.dot img {
+  height: 5px;
+  width: 5px;
+}
 
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
+.dot {
+  height: 25px;
+  size: 135px;
+  width: 25px;
+  color: white;
+  display: inline-block;
+}
 
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+.dot i {
+  font-size: 20px; /* or 40px, 50px depending on how big you want it */
+  color: white;
+}
 
-        .footer-links a:hover {
-            color: var(--cream);
-        }
+/* Quick Links & Contact Us */
+.quick-links, .contact {
+  background-color: #9DC88D;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-right: 30px;
+}
 
-        .footer-contact p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
+.quick-links h3, .contact h3 {
+  color: white;
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
 
-        .footer-contact button {
-            background-color: var(--cream);
-            color: var(--dark-text);
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 500;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
+.contact p{
+  color: white;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+  font-weight: 300;
+  text-align: center;
+  margin-left: 5px;
+}
 
-        .footer-contact button:hover {
-            background-color: var(--light-green);
-        }
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
 
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.8rem;
-        }
+.quick-links ul :hover{
+  color: #4d774e;
+}
 
-        /* Popup Form */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
+.quick-links ul li {
+  margin: 8px 0;
+}
 
-        .popup-content {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-        }
+.quick-links ul li a {
+  text-decoration: none;
+  color: white;
+}
 
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-green);
-        }
+/* Footer Bottom Text */
+.footer-text {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 15px;
+  padding-bottom: 1%;
+}
 
-        .popup h2 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-green);
-        }
+/* Button */
+#openForm  {
+  background-color: #4d774e;
+  color: white;
+  font-size: 12px;
+  padding: 10px 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-        .popup input,
-        .popup textarea {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+.openButton:hover button {
+transform: scale(1.1);
+transition: transform 0.3s;
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
 
-        .popup button[type="submit"] {
-            background-color: var(--secondary-green);
-            color: var(--white);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
+/* Popup Form */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
 
-        .popup button[type="submit"]:hover {
-            background-color: var(--primary-green);
-        }
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  width: 500px;
+}
+
+.popup-content input, .popup-content textarea {
+  width: 60%;
+  margin: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-content button {
+  background-color: #4D774E;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 35%;
+}
+
+.sendButton:hover button {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
 
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--white);
+            .footer-container {
                 flex-direction: column;
                 align-items: center;
-                padding: 2rem 0;
-                transition: left 0.3s ease;
+                padding: 0;
             }
 
-            .nav-links.active {
-                left: 0;
+            .about {
+                text-align: center;
+                width: 100%;
+                max-width: 90%;
             }
 
-            .mobile-menu-btn {
-                display: block;
+            .popup-content input,
+            .popup-content textarea {
+                width: 90%;
+            }
+
+            .popup-content button {
+                width: 60%;
+            }
+
+            #openForm {
+                margin-top: 10px;
             }
 
             .hero {
@@ -421,22 +469,20 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='logopng.png') }}" alt="EcoCart Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="/static" class="active-nav">Home</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/scan">Scan</a></li>
-            <li><a href="/maps">Maps</a></li>
-            <li><a href="/guide">Guide</a></li>
-        </ul>
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <header>
+        <h1 class="logo">
+            <img src="{{ url_for('static', filename='logopng.png') }}" style="height: 45px">
+        </h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/static">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/scan" class="active-nav">Scan</a></li>
+                <li><a href="/maps">Maps</a></li>
+                <li><a href="/guide">Guide</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -507,93 +553,94 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-about">
-                <div class="footer-logo">
-                    <img src="{{ url_for('static', filename='logopng.png') }}" alt="EcoCart Logo">
-                </div>
-                <p>EcoCart is a smart waste management system designed to promote sustainability and proper waste disposal on campus.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="/static">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/scan">Scan Waste</a></li>
-                    <li><a href="/maps">Campus Maps</a></li>
-                    <li><a href="/guide">Disposal Guide</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h3>Contact Us</h3>
-                <p><i class="fas fa-envelope"></i> info@ecocart.edu</p>
-                <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                <p><i class="fas fa-map-marker-alt"></i> University Campus, Building A</p>
-                <button id="openForm">Send Message</button>
+    <footer class ="footer">
+    <div class ="footer-container">
+        <!--Abous us Section-->
+        <div class="about">
+            <h3>About Us</h3>
+            <p>LenLens is a smart waste system that can classify your waste trash.</p>
+            <br>
+            <h3>Socials</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="dot">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="dot">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="dot">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 EcoCart. All rights reserved.</p>
-        </div>
-    </footer>
 
-    <!-- Contact Form Popup -->
-    <div id="popupForm" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>Send Us a Message</h2>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="text" placeholder="Subject" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
+        <!--Quick Links-->
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
+        </div>
+
+        <!--Contact Us-->
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@gmail.com</p>
+            <p>Phone: 09123456789</p>
+            <div class = "openButton">
+                <button  id="openForm">Send Direct Message</button>
+            </div>
         </div>
     </div>
+    <div>
+        <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+    </div>
+    </footer>
+
+ <!-- Popup Form-->
+ <div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span id="closeForm" class="close">&times;</span>
+        <h2>Send Us a Direct Message</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Message"></textarea>
+            <br>
+            <div class="sendButton">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+ </div>
 
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navLinks = document.querySelector('.nav-links');
+        
+        document.addEventListener("DOMContentLoaded", function () {
+        // Existing popup form code
+        const openFormBtn = document.getElementById("openForm");
+        const closeFormBtn = document.getElementById("closeForm");
+        const popupForm = document.getElementById("popupForm");
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        openFormBtn.addEventListener("click", function () {
+            popupForm.style.display = "flex";
         });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
+        closeFormBtn.addEventListener("click", function () {
+            popupForm.style.display = "none";
         });
 
-        // Contact Form Popup
-        const openFormBtn = document.getElementById('openForm');
-        const closeFormBtn = document.querySelector('.close');
-        const popupForm = document.getElementById('popupForm');
-
-        openFormBtn.addEventListener('click', () => {
-            popupForm.style.display = 'flex';
-        });
-
-        closeFormBtn.addEventListener('click', () => {
-            popupForm.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === popupForm) {
-                popupForm.style.display = 'none';
+        popupForm.addEventListener("click", function (event) {
+            if (event.target === popupForm) {
+                popupForm.style.display = "none";
             }
         });
+    }); // Added closing curly brace and parenthesis here
+
     </script>
-</body>
+  </body>
 </html>
