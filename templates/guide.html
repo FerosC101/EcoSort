@@ -21,7 +21,7 @@
             padding: 0;
         }
 
-        /* Navbar */
+        /* Navbar - Kept the same */
         header {
             justify-content: space-between;
             align-items: center;
@@ -72,124 +72,113 @@
         }
         /* Nav-End*/
 
-
+        /* ===== IMPROVED MAIN CONTENT STYLES ===== */
         main {
-            display: flex;
-            padding-top: 120px;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 120px;
-            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        .text-heading {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .text-heading h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .text-heading p {
-            font-size: 14px;
-            margin: 0;
-            color: #444;
-        }
-
+        /* Header Section */
         .intro {
             display: flex;
             align-items: center;
-            margin: 0 80px 20px 80px;
-            gap: 30px;
-            flex-wrap: wrap;
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .intro-icon {
-            width: 90px;
+            width: 50px;
             height: auto;
+            margin-right: 20px;
         }
 
         .intro-content {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            flex-wrap: nowrap;
             flex: 1;
-        }
-
-        .intro-text {
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .intro-text h1 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            margin: 0;
-            white-space: nowrap;
+        .text-heading h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #4D774E;
+            margin-bottom: 5px;
         }
 
-        .intro-text p {
+        .text-heading p {
             font-size: 14px;
-            margin: 4px 0;
-            flex-basis: 100%;
+            color: #666;
         }
 
         .intro-qr {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
         }
 
         .intro-qr img {
             width: 60px;
             height: 60px;
-            margin-bottom: 4px;
         }
 
         .intro-qr p {
             font-size: 10px;
-            color: #333;
-            margin: 0;
+            margin-top: 5px;
         }
 
-        .bins {
-            position: fixed;
-            bottom: 60px;
-            left: 20px;
+        /* Content Layout */
+        .content-container {
             display: flex;
-            gap: 60px;
-            flex-wrap: wrap;
-            max-width: calc(100% - 500px);
-            z-index: 2;
+            gap: 20px;
+        }
+
+        /* Waste Categories Section */
+        .waste-categories {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bin-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .residual-row {
+            justify-content: flex-start;
         }
 
         .bin {
-            text-align: center;
-            cursor: pointer;
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .bin:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .label {
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 20px;
-            margin-bottom: 10px;
+            padding: 5px 15px;
+            font-weight: 600;
+            font-size: 16px;
             border-radius: 20px;
-            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .green {
@@ -207,383 +196,316 @@
             color: #222;
         }
 
-        .bin img {
-            width: 140px;
-            height: auto;
-            transition: transform 0.3s ease;
+        .residual {
+            background-color: #dce9f2;
+            color: #222;
         }
 
-        .info-box .info-content p {
-            font-weight: bold;
+        .bin img {
+            width: 110px;
+            height: auto;
+        }
+
+        /* Info Box */
+        .info-section {
+            flex: 2;
         }
 
         .info-box {
-            position: relative;
-            margin-left: auto;
-            margin-right: 5vw;
-            width: 90%;
-            max-width: 400px;
-            height: auto;
             background-color: #7c9c77;
-            padding: 2rem;
-            font-size: 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease-in-out;
-            transform: scale(1);
-            opacity: 1;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            height: 100%;
         }
 
-        .info-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .qr {
-            position: fixed;
-            bottom: 40px;
-            right: 100px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .qr img {
-            width: 100px;
-            height: 100px;
-        }
-
-        .qr-label {
-            font-size: 14px;
-            color: #333;
+        .info-content h2 {
+            font-size: 22px;
             font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .label.residual {
-            background-color: #dce9f2;
-            color: #222;
-            font-weight: bold;
-            font-size: 20px;
-            padding: 10px 20px;
-            border-radius: 20px;
+        .info-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 15px 0 5px 0;
+        }
+
+        .info-content p {
+            line-height: 1.5;
             margin-bottom: 10px;
         }
 
-        .bin:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .info-box.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        html {
-            font-size: 16px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        @media (max-width: 1200px) {
-            .intro-text h1 {
-                font-size: 2rem;
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .content-container {
+                flex-direction: column;
             }
 
-            .bin img {
-                width: 120px;
-            }
-
-            .qr {
-                position: static;
-                margin: 2rem auto;
-            }
-
-            .bins {
+            .residual-row {
                 justify-content: center;
-                gap: 5vw;
+            }
+
+            .bin {
+                min-width: 150px;
             }
         }
 
         @media (max-width: 768px) {
             header {
-                flex-direction: column;
-                align-items: flex-start;
-                height: auto;
-                padding: 1rem 20px;
-                gap: 10px;
-            }
-
-            nav {
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-around;
-            }
-
-                nav a {
-                    font-size: 14px;
-                    margin: 6px 8px;
-                }
-
-            .logo {
-                height: 35px;
-            }
-
-            .intro-text h1 {
-                font-size: clamp(1.5rem, 6vw, 2.5rem);
+                margin-left: 20px;
+                margin-right: 20px;
             }
 
             .intro {
-                margin: 0 20px 20px 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .intro-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
 
             .intro-content {
                 flex-direction: column;
-                align-items: flex-start;
-                max-width: 100%;
             }
 
-            .intro-qr {
-                align-self: flex-start;
-                margin-top: 20px;
+            .text-heading {
+                margin-bottom: 15px;
             }
 
-            .bins {
-                left: 20px;
-                max-width: 100%;
-                justify-content: center;
+            .bin-row {
+                flex-direction: column;
+                align-items: center;
             }
 
-            .info-box {
-                position: static;
-                width: 90%;
-                margin: 20px auto;
-            }
-
-            .bin img {
-                width: 100px;
-            }
-
-            .qr {
-                position: static;
-                margin: 2rem auto;
+            .bin {
+                width: 80%;
+                max-width: 200px;
             }
         }
 
-/*FOOTER*/
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 10px;
+            }
 
-.footer {
-  background-color: #9DC88D;
-  color: white;
-  margin: auto;
-  width: 100%;
-}
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin: auto;
-  margin-top: 15px;
-  margin-right: 110px;
-}
+            .bin {
+                width: 90%;
+            }
+        }
 
-.footer-text {
-  color: white;
-}
+        /*FOOTER - Kept the same*/
+        .footer {
+          background-color: #9DC88D;
+          color: white;
+          margin: auto;
+          width: 100%;
+        }
 
-.about {
-  flex: 1;
-  padding-top: 50px;
-  max-width: 250px;
-}
+        .footer-container {
+          display: flex;
+          justify-content: space-between;
+          max-width: 1000px;
+          margin: auto;
+          margin-top: 15px;
+          margin-right: 110px;
+        }
 
-.about h3 {
-  font-size: 25px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400
-}
+        .footer-text {
+          color: white;
+        }
 
-.about p {
-  font-size: 14px;
-  font-weight: 300;
-  font-family: "Poppins", sans-serif;
-  color: white;
-}
+        .about {
+          flex: 1;
+          padding-top: 50px;
+          max-width: 250px;
+        }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
+        .about h3 {
+          font-size: 25px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 400
+        }
 
-.dot img {
-  height: 5px;
-  width: 5px;
-}
+        .about p {
+          font-size: 14px;
+          font-weight: 300;
+          font-family: "Poppins", sans-serif;
+          color: white;
+        }
 
-.dot {
-  height: 25px;
-  size: 135px;
-  width: 25px;
-  color: white;
-  display: inline-block;
-}
+        .social-icons {
+          display: flex;
+          gap: 10px;
+          margin-top: 10px;
+        }
 
-.dot i {
-  font-size: 20px; /* or 40px, 50px depending on how big you want it */
-  color: white;
-}
+        .dot img {
+          height: 5px;
+          width: 5px;
+        }
 
-/* Quick Links & Contact Us */
-.quick-links, .contact {
-  background-color: #9DC88D;
-  padding: 20px;
-  border-radius: 10px;
-  flex: 1;
-  text-align: center;
-  margin: 30px 40px;
+        .dot {
+          height: 25px;
+          size: 135px;
+          width: 25px;
+          color: white;
+          display: inline-block;
+        }
 
-}
+        .dot i {
+          font-size: 20px;
+          color: white;
+        }
 
-.quick-links {
-margin-right: 0px;
-}
+        .quick-links, .contact {
+          background-color: #9DC88D;
+          padding: 20px;
+          border-radius: 10px;
+          flex: 1;
+          text-align: center;
+          margin: 30px 40px;
+        }
 
-.contact {
-  margin-right: 100px;
+        .quick-links {
+          margin-right: 0px;
+        }
 
-}
+        .contact {
+          margin-right: 100px;
+        }
 
-.quick-links h3, .contact h3 {
-  color: white;
-  font-size: 22px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-}
+        .quick-links h3, .contact h3 {
+          color: white;
+          font-size: 22px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 300;
+        }
 
-.contact p{
-  color: white;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  padding: 5px;
-  font-weight: 300;
-  text-align: center;
-  margin-left: 5px;
-}
+        .contact p{
+          color: white;
+          font-size: 12px;
+          font-family: "Poppins", sans-serif;
+          padding: 5px;
+          font-weight: 300;
+          text-align: center;
+          margin-left: 5px;
+        }
 
-.quick-links ul {
-  list-style: none;
-  padding: 0;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-}
+        .quick-links ul {
+          list-style: none;
+          padding: 0;
+          font-size: 12px;
+          font-family: "Poppins", sans-serif;
+          font-weight: 300;
+        }
 
-.quick-links ul :hover{
-  color: #4d774e;
-}
+        .quick-links ul :hover{
+          color: #4d774e;
+        }
 
-.quick-links ul li {
-  margin: 8px 0;
-}
+        .quick-links ul li {
+          margin: 8px 0;
+        }
 
-.quick-links ul li a {
-  text-decoration: none;
-  color: white;
-}
+        .quick-links ul li a {
+          text-decoration: none;
+          color: white;
+        }
 
-/* Footer Bottom Text */
-.footer-text {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 15px;
-  padding-bottom: 1%;
-}
+        .footer-text {
+          text-align: center;
+          margin-top: 20px;
+          font-size: 15px;
+          padding-bottom: 1%;
+        }
 
-/* Button */
-#openForm  {
-  background-color: #4d774e;
-  color: white;
-  font-size: 12px;
-  padding: 10px 12px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+        #openForm  {
+          background-color: #4d774e;
+          color: white;
+          font-size: 12px;
+          padding: 10px 12px;
+          margin-top: 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
 
-.openButton:hover button {
-transform: scale(1.1);
-transition: transform 0.3s;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+        .openButton:hover button {
+          transform: scale(1.1);
+          transition: transform 0.3s;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-/* Popup Form */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-}
+        .popup {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5);
+          justify-content: center;
+          align-items: center;
+          z-index: 5;
+        }
 
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  width: 500px;
-}
+        .popup-content {
+          background: white;
+          padding: 20px;
+          border-radius: 10px;
+          position: relative;
+          font-family: "Poppins", sans-serif;
+          text-align: center;
+          width: 500px;
+        }
 
-.popup-content input, .popup-content textarea {
-  width: 60%;
-  margin: 8px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+        .popup-content input, .popup-content textarea {
+          width: 60%;
+          margin: 8px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
 
-.popup-content button {
-  background-color: #4D774E;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  width: 35%;
-}
+        .popup-content button {
+          background-color: #4D774E;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          padding: 10px;
+          cursor: pointer;
+          width: 35%;
+        }
 
-.sendButton:hover button {
-  transform: scale(1.1);
-  transition: transform 0.3s;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+        .sendButton:hover button {
+          transform: scale(1.1);
+          transition: transform 0.3s;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-/* Close Button */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
-}
+        .close {
+          position: absolute;
+          top: 10px;
+          right: 15px;
+          font-size: 20px;
+          cursor: pointer;
+        }
 
-.close:hover {
-  transform: scale(1.2);
-}
+        .close:hover {
+          transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
+    <!-- Navbar - Kept the same -->
     <header>
         <h1 class="logo">
             <img src="{{ url_for('static', filename='logopng.png') }}" style="height: 45px">
@@ -599,174 +521,217 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         </nav>
     </header>
 
+    <!-- Improved Main Content -->
     <main>
+        <!-- Header Section -->
         <section class="intro">
             <img src="{{ url_for('static', filename='loguide.png') }}" alt="Hand and Bin Icon" class="intro-icon" />
-
             <div class="intro-content">
-                <div class="intro-text">
-                    <div class="text-heading">
-                        <h1>Know To Dispose</h1>
-                        <p>hover the waste category you wish to know about</p>
-                    </div>
-
-                    <div class="intro-qr">
-                        <img src="{{ url_for('static', filename='qr.png') }}" alt="QR Code" />
-                        <p>SCAN TO PRINT</p>
-                    </div>
+                <div class="text-heading">
+                    <h1>Know To Dispose</h1>
+                    <p>Click on a waste category to learn about proper disposal methods</p>
+                </div>
+                <div class="intro-qr">
+                    <img src="{{ url_for('static', filename='qr.png') }}" alt="QR Code" />
+                    <p>SCAN TO PRINT</p>
                 </div>
             </div>
         </section>
 
-        <section class="bins">
-            <div class="bin" id="general">
-                <p class="label green">General Wastes</p>
-                <img src="{{ url_for('static', filename='general.png') }}" alt="General Bin" />
-            </div>
-            <div class="bin" id="hazardous">
-                <p class="label red">Hazardous Wastes</p>
-                <img src="{{ url_for('static', filename='hazard.png') }}" alt="Hazardous Bin" />
-            </div>
-            <div class="bin" id="recyclables">
-                <p class="label yellow">Recyclables</p>
-                <img src="{{ url_for('static', filename='recyclable.png') }}" alt="Recycle Bin" />
-            </div>
-            <div class="bin" id="residual">
-                <p class="label residual">Residual Wastes</p>
-                <img src="{{ url_for('static', filename='residual.png') }}" alt="Residual Waste Bin" />
-            </div>
-        </section>
+        <!-- Content Layout -->
+        <div class="content-container">
+            <!-- Waste Categories Section -->
+            <div class="waste-categories">
+                <!-- First row: General, Hazardous, Recyclables -->
+                <div class="bin-row">
+                    <div class="bin" id="general">
+                        <span class="label green">General Wastes</span>
+                        <img src="{{ url_for('static', filename='general.png') }}" alt="General Bin" />
+                    </div>
+                    <div class="bin" id="hazardous">
+                        <span class="label red">Hazardous Wastes</span>
+                        <img src="{{ url_for('static', filename='hazard.png') }}" alt="Hazardous Bin" />
+                    </div>
+                    <div class="bin" id="recyclables">
+                        <span class="label yellow">Recyclables</span>
+                        <img src="{{ url_for('static', filename='recyclable.png') }}" alt="Recycle Bin" />
+                    </div>
+                </div>
 
-        <section class="info-box" id="infoBox">
-            <div class="info-content">
-                <p>No waste category hovered.</p>
+                <!-- Second row: just Residual -->
+                <div class="bin-row residual-row">
+                    <div class="bin" id="residual">
+                        <span class="label residual">Residual Wastes</span>
+                        <img src="{{ url_for('static', filename='residual.png') }}" alt="Residual Waste Bin" />
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- Info Box Section -->
+            <div class="info-section">
+                <div class="info-box" id="infoBox">
+                    <div class="info-content">
+                        <h2>General Waste</h2>
+                        <p>General waste includes everyday non-hazardous items that cannot be recycled or composted. These are typical household or office waste materials.</p>
+
+                        <h3>To properly dispose of them:</h3>
+                        <p>Place in black or general waste bins as they are usually sent to landfills or waste-to-energy plants.</p>
+
+                        <h3>Important Note:</h3>
+                        <p>Do not put general waste in recycling or compost bins.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-    <footer class ="footer">
-            <div class ="footer-container">
-                <!--Abous us Section-->
-                <div class="about">
-                    <h3>About Us</h3>
-                    <p>LenLens is a smart waste system that can classify your waste trash.</p>
-                    <br>
-                    <h3>Socials</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com" target="_blank" class="dot">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com" target="_blank" class="dot">
-                            <i class="fab fa-x-twitter"></i>
-                        </a>
-                        <a href="https://www.instagram.com" target="_blank" class="dot">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
 
-                <!--Quick Links-->
-                <div class="quick-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Guide</a></li>
-                        <li><a href="#">Scan</a></li>
-                        <li><a href="#">Maps</a></li>
-                    </ul>
-                </div>
-
-                <!--Contact Us-->
-                <div class="contact">
-                    <h3>Contact Us</h3>
-                    <p>Email: info@gmail.com</p>
-                    <p>Phone: 09123456789</p>
-                    <div class = "openButton">
-                        <button  id="openForm">Send Direct Message</button>
-                    </div>
+    <!-- Footer - Kept the same -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!--About us Section-->
+            <div class="about">
+                <h3>About Us</h3>
+                <p>LenLens is a smart waste system that can classify your waste trash.</p>
+                <br>
+                <h3>Socials</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank" class="dot">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="dot">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank" class="dot">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
             </div>
-            <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
-        </footer>
+
+            <!--Quick Links-->
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Guide</a></li>
+                    <li><a href="#">Scan</a></li>
+                    <li><a href="#">Maps</a></li>
+                </ul>
+            </div>
+
+            <!--Contact Us-->
+            <div class="contact">
+                <h3>Contact Us</h3>
+                <p>Email: info@gmail.com</p>
+                <p>Phone: 09123456789</p>
+                <div class="openButton">
+                    <button id="openForm">Send Direct Message</button>
+                </div>
+            </div>
+        </div>
+        <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+    </footer>
+
+    <!-- Popup Form HTML would go here if needed -->
+    <div class="popup" id="popupForm">
+        <div class="popup-content">
+            <span class="close" id="closeForm">&times;</span>
+            <h2>Send us a message</h2>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Your Message" required></textarea>
+                <div class="sendButton">
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-
         document.addEventListener("DOMContentLoaded", function () {
-        // Existing popup form code
-        const openFormBtn = document.getElementById("openForm");
-        const closeFormBtn = document.getElementById("closeForm");
-        const popupForm = document.getElementById("popupForm");
+            // Popup form code
+            const openFormBtn = document.getElementById("openForm");
+            const closeFormBtn = document.getElementById("closeForm");
+            const popupForm = document.getElementById("popupForm");
 
-        openFormBtn.addEventListener("click", function () {
-            popupForm.style.display = "flex";
-        });
+            if (openFormBtn && closeFormBtn && popupForm) {
+                openFormBtn.addEventListener("click", function () {
+                    popupForm.style.display = "flex";
+                });
 
-        closeFormBtn.addEventListener("click", function () {
-            popupForm.style.display = "none";
-        });
+                closeFormBtn.addEventListener("click", function () {
+                    popupForm.style.display = "none";
+                });
 
-        popupForm.addEventListener("click", function (event) {
-            if (event.target === popupForm) {
-                popupForm.style.display = "none";
+                popupForm.addEventListener("click", function (event) {
+                    if (event.target === popupForm) {
+                        popupForm.style.display = "none";
+                    }
+                });
             }
+
+            // Waste info content
+            const infoBox = document.getElementById('infoBox');
+            const infoContent = infoBox.querySelector('.info-content');
+
+            const wasteInfo = {
+                general: `
+                    <h2>General Waste</h2>
+                    <p>General waste includes everyday non-hazardous items that cannot be recycled or composted. These are typical household or office waste materials.</p>
+
+                    <h3>To properly dispose of them:</h3>
+                    <p>Place in black or general waste bins as they are usually sent to landfills or waste-to-energy plants.</p>
+
+                    <h3>Important Note:</h3>
+                    <p>Do not put general waste in recycling or compost bins.</p>
+                `,
+                hazardous: `
+                    <h2>Hazardous Waste</h2>
+                    <p>Hazardous waste contains substances that are harmful to human health or the environment. These require special handling and disposal.</p>
+
+                    <h3>To properly dispose of them:</h3>
+                    <p>Follow local government or environmental authority guidelines for specific disposal instructions. If possible, take them to a certified hazardous waste collection site or municipal collection event.</p>
+                    <p>Use e-waste recycling centers for electronics.</p>
+
+                    <h3>Important Note:</h3>
+                    <p>Never dispose in general or recycling bins.</p>
+                `,
+                recyclables: `
+                    <h2>Recyclables</h2>
+                    <p>Recyclables are items that can be processed and reused to make new products.</p>
+
+                    <h3>To properly dispose of them:</h3>
+                    <p>Rinse and clean items before placing them in recycling bins. Consider checking local recycling guidelines for accepted materials.</p>
+
+                    <h3>Important Note:</h3>
+                    <p>Do not include food-contaminated items or non-recyclable plastics.</p>
+                `,
+                residual: `
+                    <h2>Residual Waste</h2>
+                    <p>Residual waste refers to non-recyclable and non-hazardous waste that remains after all recyclable and reusable materials have been separated. They are collected by municipal services and usually landfilled or incinerated.</p>
+
+                    <h3>To properly dispose of them:</h3>
+                    <p>Place in residual waste bins (often gray or black, depending on the locality).</p>
+
+                    <h3>Important Note:</h3>
+                    <p>Do not mix with recyclables or compostables.</p>
+                `
+            };
+
+            // Set initial content to General Waste
+            infoContent.innerHTML = wasteInfo.general;
+
+            // Function to show info when clicking on a bin
+            function showInfo(type) {
+                infoContent.innerHTML = wasteInfo[type];
+            }
+
+            // Event listeners for bins
+            document.getElementById('general').addEventListener('click', () => showInfo('general'));
+            document.getElementById('hazardous').addEventListener('click', () => showInfo('hazardous'));
+            document.getElementById('recyclables').addEventListener('click', () => showInfo('recyclables'));
+            document.getElementById('residual').addEventListener('click', () => showInfo('residual'));
         });
-    }); // Added closing curly brace and parenthesis here
-
-        const infoBox = document.getElementById('infoBox');
-
-        const wasteInfo = {
-            general: `
-            <strong>General Waste:</strong><br>
-            General waste includes everyday non-hazardous items that cannot be recycled or composted. These are typical household or office waste materials.<br><br>
-            <strong>To properly dispose of them:</strong><br>
-            Place in black or general waste bins as they are usually sent to landfills or waste-to-energy plants.<br><br>
-            <strong>Important Note:</strong><br>
-            Do not put general waste in recycling or compost bins.
-          `,
-            hazardous: `
-            <strong>Hazardous Waste:</strong><br>
-            Hazardous waste contains substances that are harmful to human health or the environment. These require special handling and disposal.<br><br>
-            <strong>To properly dispose of them:</strong><br>
-            Follow local government or environmental authority guidelines for specific disposal instructions. If possible, take them to a certified hazardous waste collection site or municipal collection event.<br>
-            Use e-waste recycling centers for electronics.<br><br>
-            <strong>Important Note:</strong><br>
-            Never dispose in general or recycling bins.
-          `,
-            recyclable: `
-            <strong>Recyclables:</strong><br>
-            Recyclables are items that can be processed and reused to make new products.<br><br>
-            <strong>To properly dispose of them:</strong><br>
-            Rinse and clean items before placing them in recycling bins. Consider checking local recycling guidelines for accepted materials.<br><br>
-            <strong>Important Note:</strong><br>
-            Do not include food-contaminated items or non-recyclable plastics.
-          `,
-            residual: `
-            <strong>Residual Waste:</strong><br>
-            Residual waste refers to non-recyclable and non-hazardous waste that remains after all recyclable and reusable materials have been separated. They are collected by municipal services and usually landfilled or incinerated.<br><br>
-            <strong>To properly dispose of them:</strong><br>
-            Place in residual waste bins (often gray or black, depending on the locality).<br><br>
-            <strong>Important Note:</strong><br>
-            Do not mix with recyclables or compostables.
-          `
-        };
-        function showInfo(type) {
-            infoBox.innerHTML = wasteInfo[type];
-            infoBox.classList.add("active");
-        }
-
-        function resetInfo() {
-            infoBox.innerHTML = "<div class='info-content'><p><strong>No waste category hovered.</strong></p></div>";
-            infoBox.classList.remove("active");
-        }
-
-        document.getElementById('general').addEventListener('mouseenter', () => showInfo('general'));
-        document.getElementById('hazardous').addEventListener('mouseenter', () => showInfo('hazardous'));
-        document.getElementById('recyclables').addEventListener('mouseenter', () => showInfo('recyclable'));
-        document.getElementById('residual').addEventListener('mouseenter', () => showInfo('residual'));
-
-        document.querySelectorAll('.bin').forEach(bin => {
-            bin.addEventListener('mouseleave', resetInfo);
-        });
-
-
     </script>
 </body>
 </html>
