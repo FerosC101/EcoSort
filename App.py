@@ -10,18 +10,11 @@ import time
 import json
 
 # Initialize Flask app
-app = Flask(__name__, static_folder='.', static_url_path='')
+app = Flask(__name__, static_folder='static', static_url_path='')
 
 # Configure paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(BASE_DIR, 'Scan', 'uploads')
-SCAN_DIR = os.path.join(BASE_DIR, 'Scan')
-ABOUT_DIR = os.path.join(BASE_DIR, 'about_section')
-MAPPING_DIR = os.path.join(BASE_DIR, 'Mapping')
-DISPOSAL_DIR = os.path.join(BASE_DIR, 'DisposalGuide')
-ML_DIR = os.path.join(BASE_DIR, 'MachineLearning', 'EcoSort_models')
-
-# Create upload folder if it doesn't exist
+UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -45,21 +38,17 @@ CUSTOM_OBJECTS = {
     'Cast': CastLayer,
 }
 
-# Paths to model files
-model_path = os.path.join(ML_DIR, 'final.h5')
-category_map_path = os.path.join(ML_DIR, 'category_map.json')
-group_map_path = os.path.join(ML_DIR, 'group_map.json')
+model_path = os.path.join(BASE_DIR, 'models', 'final.h5')
+category_map_path = os.path.join(BASE_DIR, 'models', 'category_map.json')
+group_map_path = os.path.join(BASE_DIR, 'models', 'group_map.json')
 
-# Initialize model and mappings
 model = None
 idx_to_class = {}
 idx_to_group = {}
 
 try:
-    # Load model
     model = tf.keras.models.load_model(model_path, custom_objects=CUSTOM_OBJECTS)
 
-    # Load category and group mappings
     with open(category_map_path) as f:
         category_map = json.load(f)
         idx_to_class = {v: k for k, v in category_map.items()}
@@ -126,37 +115,34 @@ def classify_image(image):
 
     return category, waste_type, det_conf
 
-# Route for home page
 @app.route('/')
 def home():
-    return send_from_directory(os.path.join(BASE_DIR, 'Entry page'), 'EntryPage.html')
+    return render_template('EntryPage.html')
 
-# Route for about page
-@app.route('/about')
-def about():
-    return send_from_directory(ABOUT_DIR, 'about.html')
-
-# Route for scan page
-@app.route('/scan')
-def scan():
-    return send_from_directory(SCAN_DIR, 'scan.html')
-
-# Route for maps page
-@app.route('/maps')
-def maps():
-    return send_from_directory(MAPPING_DIR, 'index.html')
-
-# Route for disposal guide
-@app.route('/disposal')
-def disposal():
-    return send_from_directory(DISPOSAL_DIR, 'disposal.html')
-
-# Route to enter the app from entry page
 @app.route('/enter_app')
 def enter_app():
     return redirect('/scan')
 
-# API endpoint for image classification
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/scan')
+def scan():
+    return render_template('scan.html')
+
+@app.route('/maps')
+def maps():
+    return render_template('Mapping.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')
+
 @app.route('/api/classify', methods=['POST'])
 def handle_classification():
     if model is None:
@@ -201,35 +187,9 @@ def handle_classification():
         except Exception as e:
             return jsonify({'success': False, 'error': str(e)}), 500
 
-# Serve uploaded files
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
-
-# Serve files from Scan directory
-@app.route('/Scan/<path:filename>')
-def serve_scan_files(filename):
-    return send_from_directory(SCAN_DIR, filename)
-
-# Serve files from AboutWithFooter directory
-@app.route('/AboutWithFooter/<path:filename>')
-def serve_about_files(filename):
-    return send_from_directory(ABOUT_DIR, filename)
-
-# Serve files from Mapping directory
-@app.route('/Mapping/<path:filename>')
-def serve_mapping_files(filename):
-    return send_from_directory(MAPPING_DIR, filename)
-
-# Serve files from DisposalGuide directory
-@app.route('/DisposalGuide/<path:filename>')
-def serve_disposal_files(filename):
-    return send_from_directory(DISPOSAL_DIR, filename)
-
-# Serve static files from root
-@app.route('/<path:filename>')
-def serve_static(filename):
-    return send_from_directory(BASE_DIR, filename)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

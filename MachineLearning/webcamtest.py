@@ -21,9 +21,9 @@ class Cast(Layer):
 
 # ─── 2. Load model & mappings ─────────────────────────────────────────────────
 model = load_model('EcoSort_models/final.h5', custom_objects={'Cast': Cast})
-with open('EcoSort_models/category_map.json') as f:
+with open('../models/category_map.json') as f:
     category_map = json.load(f)
-with open('EcoSort_models/group_map.json') as f:
+with open('../models/group_map.json') as f:
     group_map = json.load(f)
 idx_to_class = {v:k for k,v in category_map.items()}
 idx_to_group = {int(k):v for k,v in group_map.items()}

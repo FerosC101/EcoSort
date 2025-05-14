@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About LenLens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #164A41;
+            --light-green: #9DC88D;
+            --light-green-transparent: rgba(157, 200, 141, 0.6);
+            --dark-text: #182916;
+            --cream-bg: #FFFDF3;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1720px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+
+
+/* Navbar */
+header {
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    margin-left: 75px;
+    margin-right: 75px;
+    margin-top: 10px;
+        height: 50px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    z-index: 10;
+  }
+
+  #logo {
+    width: 100px;
+    height: auto;
+    margin-left: 20px;
+  }
+
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-links li {
+    display: inline;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 18px;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+
+  .nav-links a:hover {
+    background-color: #e3e3e3;
+  }
+  /* Nav-End*/
+        /* About Section */
+        .about-section {
+            background-color: var(--white);
+            border-radius: 50px;
+            padding: 80px 100px; /* Adjusted padding */
+            box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.25);
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            max-width: 1720px;
+            margin: 0 auto 60px;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 40px; /* Adjusted position */
+            left: 40px; /* Adjusted position */
+            width: calc(100% - 80px); /* Responsive width */
+            height: calc(100% - 80px); /* Responsive height */
+            background-color: var(--light-green);
+            border-radius: 30px; /* Adjusted radius */
+            border: 1px solid #000000;
+            filter: blur(50px);
+            z-index: 0;
+            opacity: 0.8; /* Added opacity */
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .about-title {
+            font-weight: 800;
+            font-size: 72px; /* Slightly reduced */
+            letter-spacing: 4.8px;
+            line-height: 1.2;
+            margin-bottom: 60px;
+            color: #000000;
+            position: relative;
+        }
+
+        .about-text {
+            font-weight: 400;
+            font-size: 20px;
+            letter-spacing: 0.4px;
+            line-height: 32px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .scan-now-btn {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-green);
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.9px;
+            padding: 10px 30px;
+            border-radius: 30px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+            text-decoration: none;
+            margin-top: 50px;
+        }
+
+        /* Features Section */
+        .features-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            max-width: 1716px;
+            margin: 0 auto 182px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.25);
+            flex: 1;
+        }
+
+        .feature-content {
+            background-color: var(--light-green-transparent);
+            border-radius: 20px;
+            padding: 18px 30px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: 1px;
+            line-height: 30px;
+            white-space: nowrap;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-section {
+            display: flex;
+            max-width: 1489px;
+            margin: 0 auto;
+            position: relative;
+            height: 823px;
+            margin-bottom: 100px;
+        }
+
+        .why-choose-image {
+            width: 565px;
+            height: 662px;
+            position: absolute;
+            top: 63px;
+            left: 0;
+            /* Placeholder for image */
+            background-color: #eee;
+        }
+
+        .why-choose-content {
+            background-color: var(--light-green);
+            border-radius: 50px;
+            padding: 74px 70px 48px;
+            width: 478px;
+            height: 800px;
+            position: absolute;
+            top: 0;
+            left: 405px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+
+        .why-choose-title {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 30px;
+        }
+
+        .why-choose-text {
+            font-weight: 400;
+            font-size: 18px;
+            letter-spacing: 0.9px;
+            line-height: 30px;
+            flex: 1;
+        }
+
+        .learn-more-btn {
+            background-color: var(--white);
+            color: var(--primary-green);
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: 1px;
+            line-height: 30px;
+            padding: 12px 43px;
+            border-radius: 20px;
+            text-align: center;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            background-color: var(--white);
+            border-radius: 0 30px 30px 0;
+            box-shadow: 5px 12px 20px rgba(0, 0, 0, 0.25);
+            width: 612px;
+            height: 645px;
+            position: absolute;
+            top: 89px;
+            left: 877px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .steps-container {
+            width: 393px;
+        }
+
+        .step-card {
+            background-color: var(--light-green-transparent);
+            border-radius: 20px;
+            padding: 18px 30px;
+            font-weight: 500;
+            font-size: 20px;
+            letter-spacing: 1px;
+            line-height: 30px;
+            text-align: center;
+            margin-bottom: 68px;
+            position: relative;
+        }
+
+        .step-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-connector {
+            position: absolute;
+            bottom: -68px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 68px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .about-section {
+                padding: 100px 150px;
+            }
+
+            .about-title {
+                font-size: 72px;
+                line-height: 84px;
+            }
+
+            .why-choose-section {
+                flex-direction: column;
+                height: auto;
+            }
+
+
+            .why-choose-content,
+            .steps-section {
+                position: static;
+                width: 100%;
+                height: auto;
+                margin-bottom: 40px;
+            }
+
+            .steps-section {
+                border-radius: 30px;
+            }
+
+            .why-choose-image
+            {
+                display: none;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .about-section {
+                padding: 80px 100px;
+            }
+
+            .about-title {
+                font-size: 60px;
+                line-height: 72px;
+                margin-bottom: 80px;
+            }
+
+            .features-section {
+                flex-wrap: wrap;
+            }
+
+            .feature-card {
+                min-width: calc(50% - 20px);
+                margin-bottom: 20px;
+            }
+
+            .nav-links {
+                gap: 40px;
+            }
+
+            .nav-item {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .about-section {
+                padding: 60px 30px;
+            }
+
+            .about-title {
+                font-size: 48px;
+                line-height: 56px;
+                margin-bottom: 60px;
+            }
+
+            .about-text {
+                font-size: 18px;
+                line-height: 28px;
+            }
+
+            .feature-card {
+                min-width: 100%;
+            }
+
+            .feature-content,
+            .step-card {
+                font-size: 18px;
+                line-height: 26px;
+                white-space: normal;
+            }
+
+            .why-choose-content {
+                padding: 50px 30px;
+            }
+
+            .why-choose-title {
+                font-size: 28px;
+            }
+
+            .why-choose-text {
+                font-size: 16px;
+                line-height: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-title {
+                font-size: 36px;
+                line-height: 42px;
+                letter-spacing: 1.8px;
+            }
+
+            .about-text {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            .scan-now-btn,
+            .learn-more-btn {
+                font-size: 16px;
+                padding: 8px 24px;
+            }
+
+            .nav-item {
+                font-size: 18px;
+            }
+        }
+
+        /*FOOTER*/
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  background-color: #9DC88D;
+  color: white;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin-top: 10px;
+  margin-left: 10%;
+}
+
+.footer-text {
+  color: white;
+}
+
+.about {
+  flex: 1;
+  padding-top: 50px;
+  max-width: 250px;
+}
+
+.about h3 {
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400
+}
+
+.about p {
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.dot img {
+  height: 5px;
+  width: 5px;
+}
+
+.dot {
+  height: 25px;
+  size: 135px;
+  width: 25px;
+  color: white;
+  display: inline-block;
+}
+
+.dot i {
+  font-size: 20px; /* or 40px, 50px depending on how big you want it */
+  color: white;
+}
+
+/* Quick Links & Contact Us */
+.quick-links, .contact {
+  background-color: #9DC88D;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1;
+  text-align: center;
+  margin: 30px 40px;
+
+}
+
+.quick-links {
+margin-right: 0px;
+}
+
+.contact {
+  margin-right: 100px;
+
+}
+
+.quick-links h3, .contact h3 {
+  color: white;
+  font-size: 22px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.contact p{
+  color: white;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  padding: 5px;
+  font-weight: 300;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.quick-links ul {
+  list-style: none;
+  padding: 0;
+  font-size: 12px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+}
+
+.quick-links ul :hover{
+  color: #4d774e;
+}
+
+.quick-links ul li {
+  margin: 8px 0;
+}
+
+.quick-links ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Footer Bottom Text */
+.footer-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 15px;
+  padding-bottom: 1%;
+}
+
+/* Button */
+#openForm  {
+  background-color: #4d774e;
+  color: white;
+  font-size: 12px;
+  padding: 10px 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.openButton:hover button {
+transform: scale(1.1);
+transition: transform 0.3s;
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Popup Form */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.popup-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  width: 500px;
+}
+
+.popup-content input, .popup-content textarea {
+  width: 60%;
+  margin: 8px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-content button {
+  background-color: #4D774E;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 35%;
+}
+
+.sendButton:hover button {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.close:hover {
+  transform: scale(1.2);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <header>
+        <h1 class="logo">
+            <img src="{{ url_for('static', filename='logopng.png') }}" style="height: 45px">
+        </h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/static">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/scan" class="active-nav">Scan</a></li>
+                <li><a href="/maps">Maps</a></li>
+                <li><a href="/guide">guide</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <h1 class="about-title">ABOUT LENLENS</h1>
+                <p class="about-text">
+                    LenLens is an innovative waste management application designed to promote responsible and sustainable
+                    disposal habits within our campus community. LenLens allows you to input any item you wish to discard and
+                    instantly receive guidance on the appropriate disposal method—whether it belongs in recycling, compost,
+                    landfill, or requires special handling as hazardous waste. LenLens is more than just a tool—it's a
+                    step toward a cleaner, greener environment. By simplifying the disposal process and raising awareness
+                    about waste management, the app supports our shared commitment to sustainability and environmental
+                    responsibility.
+                </p>
+                <a href="#" class="scan-now-btn">scan now</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="feature-card">
+                <div class="feature-content">Item Disposal Scanner</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-content">Disposal Tips & Best Practices</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-content">Interactive Campus Map</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-content">Educational Waste Categories</div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-section">
+            <div class="why-choose-image">
+                <img src="img/lady.png" alt="Waste management illustration" style="width: 100%; height: auto;">
+            </div>
+            <div class="why-choose-content">
+                <h2 class="why-choose-title">Why Choose Us?</h2>
+                <p class="why-choose-text">
+                    LenLens makes responsible waste disposal simple and accessible by helping users instantly identify how
+                    to properly dispose of any item. Designed specifically for your school, it offers accurate, campus-based
+                    information—including bin locations and tailored disposal tips. With a clean, user-friendly interface
+                    and helpful guidance built into every search, LenLens not only streamlines your disposal decisions but
+                    also encourages long-term sustainable habits through education and everyday convenience.
+                </p>
+                <a href="#" class="learn-more-btn">Learn More</a>
+            </div>
+            <div class="steps-section">
+                <div class="steps-container">
+                    <div class="step-card">
+                        Scan or Upload Disposal Item
+                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                    </div>
+                    <div class="step-card">
+                        Get Proper Disposal Information
+                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                    </div>
+                    <div class="step-card">
+                        Locate Nearest Disposal Bin
+                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                    </div>
+                    <div class="step-card">
+                        Properly Dispose of Waste!
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<footer class ="footer">
+    <div class ="footer-container">
+        <!--Abous us Section-->
+        <div class="about">
+            <h3>About Us</h3>
+            <p>LenLens is a smart waste system that can classify your waste trash.</p>
+            <br>
+            <h3>Socials</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="dot">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="dot">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="dot">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+
+        <!--Quick Links-->
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
+        </div>
+
+        <!--Contact Us-->
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@gmail.com</p>
+            <p>Phone: 09123456789</p>
+            <div class = "openButton">
+                <button  id="openForm">Send Direct Message</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Popup Form-->
+ <div id="popupForm" class="popup">
+    <div class="popup-content">
+        <span id="closeForm" class="close">&times;</span>
+        <h2>Send Us a Direct Message</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Message"></textarea>
+            <br>
+            <div class="sendButton">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+ </div>
+
+    <!-- Popup Form-->
+    <div id="popupForm" class="popup">
+        <div class="popup-content">
+            <span id="closeForm" class="close">&times;</span>
+            <h2>Send Us a Direct Message</h2>
+            <form>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="text" placeholder="Subject">
+                <textarea placeholder="Message"></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Existing popup form code
+        const openFormBtn = document.getElementById("openForm");
+        const closeFormBtn = document.getElementById("closeForm");
+        const popupForm = document.getElementById("popupForm");
+
+        openFormBtn.addEventListener("click", function () {
+            popupForm.style.display = "flex";
+        });
+
+        closeFormBtn.addEventListener("click", function () {
+            popupForm.style.display = "none";
+        });
+
+        popupForm.addEventListener("click", function (event) {
+            if (event.target === popupForm) {
+                popupForm.style.display = "none";
+            }
+        });
+    }); // Added closing curly brace and parenthesis here
+</script>
+
+</body>
+</html>
