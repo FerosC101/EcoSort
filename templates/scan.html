@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scan Your Waste</title>
-    <link rel="stylesheet" href="../Scan/scan/style.css">
+   <!-- <link rel="stylesheet" href="../Scan/scan/style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -315,216 +315,231 @@
 
         /*FOOTER*/
 
-.footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  background-color: #9DC88D;
-  color: white;
-  width: 100%;
-}
+        .footer {
+        background-color: #9DC88D;
+        color: white;
+        width: 100%;
+        padding: 40px 20px 20px;
+        margin-top: 10px;
+        }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  margin-top: 10px;
-  margin-left: 10%;
-}
+        .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+        }
 
-.footer-text {
-  color: white;
-}
+        .footer-text {
+        color: white;
+        }
 
-.about {
-  flex: 1;
-  padding-top: 50px;
-  max-width: 250px;
-}
+        .about {
+        flex: 1 1 300px;
+        max-width: 250px; 
+        margin-top: 20px;
+        }
 
-.about h3 {
-  font-size: 25px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400
-}
+        .about h3 {
+        font-size: 25px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+        }
 
-.about p {
-  font-size: 14px;
-  font-weight: 300;
-  font-family: "Poppins", sans-serif;
-  color: white;
-}
+        .about p {
+        font-size: 14px;
+        font-weight: 300;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        }
 
-.social-icons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
+        .social-icons {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        }
 
-.dot img {
-  height: 5px;
-  width: 5px;
-}
+        .dot img {
+        height: 5px;
+        width: 5px;
+        }
 
-.dot {
-  height: 25px;
-  size: 135px;
-  width: 25px;
-  color: white;
-  display: inline-block;
-}
+        .dot {
+        height: 25px;
+        size: 135px;
+        width: 25px;
+        color: white;
+        display: inline-block;
+        }
 
-.dot i {
-  font-size: 20px; /* or 40px, 50px depending on how big you want it */
-  color: white;
-}
+        .dot i {
+        font-size: 20px; /* or 40px, 50px depending on how big you want it */
+        color: white;
+        }
 
-/* Quick Links & Contact Us */
-.quick-links, .contact {
-  background-color: #9DC88D;
-  padding: 20px;
-  border-radius: 10px;
-  flex: 1;
-  text-align: center;
-  margin: 30px 40px;
+        /* Quick Links & Contact Us */
+        .quick-links, .contact {
+        background-color: #9DC88D;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-right: 30px;
+        }
 
-}
+        .quick-links h3, .contact h3 {
+        color: white;
+        font-size: 22px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        }
 
-.quick-links {
-margin-right: 0px;
-}
+        .contact p{
+        color: white;
+        font-size: 12px;
+        font-family: "Poppins", sans-serif;
+        padding: 5px;
+        font-weight: 300;
+        text-align: center;
+        margin-left: 5px;
+        }
 
-.contact {
-  margin-right: 100px;
+        .quick-links ul {
+        list-style: none;
+        padding: 0;
+        font-size: 12px;
+        font-family: "Poppins", sans-serif;
+        font-weight: 300;
+        }
 
-}
+        .quick-links ul :hover{
+        color: #4d774e;
+        }
 
-.quick-links h3, .contact h3 {
-  color: white;
-  font-size: 22px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-}
+        .quick-links ul li {
+        margin: 8px 0;
+        }
 
-.contact p{
-  color: white;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  padding: 5px;
-  font-weight: 300;
-  text-align: center;
-  margin-left: 5px;
-}
+        .quick-links ul li a {
+        text-decoration: none;
+        color: white;
+        }
 
-.quick-links ul {
-  list-style: none;
-  padding: 0;
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-}
+        /* Footer Bottom Text */
+        .footer-text {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 15px;
+        padding-bottom: 1%;
+        }
 
-.quick-links ul :hover{
-  color: #4d774e;
-}
+        /* Button */
+        #openForm  {
+        background-color: #4d774e;
+        color: white;
+        font-size: 12px;
+        padding: 10px 12px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        }
 
-.quick-links ul li {
-  margin: 8px 0;
-}
+        .openButton:hover button {
+        transform: scale(1.1);
+        transition: transform 0.3s;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-.quick-links ul li a {
-  text-decoration: none;
-  color: white;
-}
+        /* Popup Form */
+        .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 5;
+        }
 
-/* Footer Bottom Text */
-.footer-text {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 15px;
-  padding-bottom: 1%;
-}
+        .popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        width: 500px;
+        }
 
-/* Button */
-#openForm  {
-  background-color: #4d774e;
-  color: white;
-  font-size: 12px;
-  padding: 10px 12px;
-  margin-top: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+        .popup-content input, .popup-content textarea {
+        width: 60%;
+        margin: 8px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        }
 
-.openButton:hover button {
-transform: scale(1.1);
-transition: transform 0.3s;
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+        .popup-content button {
+        background-color: #4D774E;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        cursor: pointer;
+        width: 35%;
+        }
 
-/* Popup Form */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 5;
-}
+        .sendButton:hover button {
+        transform: scale(1.1);
+        transition: transform 0.3s;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  position: relative;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  width: 500px;
-}
+        /* Close Button */
+        .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        }
 
-.popup-content input, .popup-content textarea {
-  width: 60%;
-  margin: 8px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
+        .close:hover {
+        transform: scale(1.2);
+        }
 
-.popup-content button {
-  background-color: #4D774E;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  cursor: pointer;
-  width: 35%;
-}
+        /* Responsive */
+        @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+        }
 
-.sendButton:hover button {
-  transform: scale(1.1);
-  transition: transform 0.3s;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
+        .about {
+            text-align: center;
+            width: 100%;
+            max-width: 90%;
+        }
 
-/* Close Button */
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 20px;
-  cursor: pointer;
-}
+        .popup-content input,
+        .popup-content textarea {
+            width: 90%;
+        }
 
-.close:hover {
-  transform: scale(1.2);
-}
+        .popup-content button {
+            width: 60%;
+        }
+
+        #openForm {
+            margin-top: 10px;
+        }
+        }
 
 
         /* Loading spinner */
@@ -576,7 +591,7 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
                 <li><a href="/about">About Us</a></li>
                 <li><a href="/scan" class="active-nav">Scan</a></li>
                 <li><a href="/maps">Maps</a></li>
-                <li><a href="/guide">guide</a></li>
+                <li><a href="/guide">Guide</a></li>
             </ul>
         </nav>
     </header>
@@ -612,52 +627,52 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         </div>
     </div>
 
-    <footer class ="footer">
-        <div class ="footer-container">
-            <!--Abous us Section-->
-            <div class="about">
-                <h3>About Us</h3>
-                <p>LenLens is a smart waste system that can classify your waste trash.</p>
-                <br>
-                <h3>Socials</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com" target="_blank" class="dot">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="dot">
-                        <i class="fab fa-x-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com" target="_blank" class="dot">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!--Quick Links-->
-            <div class="quick-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Guide</a></li>
-                    <li><a href="#">Scan</a></li>
-                    <li><a href="#">Maps</a></li>
-                </ul>
-            </div>
-
-            <!--Contact Us-->
-            <div class="contact">
-                <h3>Contact Us</h3>
-                <p>Email: info@gmail.com</p>
-                <p>Phone: 09123456789</p>
-                <div class = "openButton">
-                    <button  id="openForm">Send Direct Message</button>
-                </div>
+   <footer class ="footer">
+    <div class ="footer-container">
+        <!--Abous us Section-->
+        <div class="about">
+            <h3>About Us</h3>
+            <p>LenLens is a smart waste system that can classify your waste trash.</p>
+            <br>
+            <h3>Socials</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="dot">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" target="_blank" class="dot">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank" class="dot">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
-        <div>
-            <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+
+        <!--Quick Links-->
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Guide</a></li>
+                <li><a href="#">Scan</a></li>
+                <li><a href="#">Maps</a></li>
+            </ul>
         </div>
-    </footer>``
+
+        <!--Contact Us-->
+        <div class="contact">
+            <h3>Contact Us</h3>
+            <p>Email: info@gmail.com</p>
+            <p>Phone: 09123456789</p>
+            <div class = "openButton">
+                <button  id="openForm">Send Direct Message</button>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p class="footer-text">© 2025 LenLens. All rights reserved.</p>
+    </div>
+</footer>
 
 <!-- Popup Form-->
  <div id="popupForm" class="popup">
@@ -677,21 +692,6 @@ box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     </div>
  </div>
 
-
-    <!-- Popup Form-->
-    <div id="popupForm" class="popup">
-        <div class="popup-content">
-            <span id="closeForm" class="close">&times;</span>
-            <h2>Send Us a Direct Message</h2>
-            <form>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="text" placeholder="Subject">
-                <textarea placeholder="Message"></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </div>
-    </div>
 
     <script>
         // Campus buildings data - same as in index.html
