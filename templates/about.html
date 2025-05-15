@@ -676,7 +676,7 @@
         </h1>
         <nav>
             <ul class="nav-links">
-                <li><a href="/static">Home</a></li>
+                <li><a href="/homes">Home</a></li>
                 <li><a href="/about" class="active-nav">About Us</a></li>
                 <li><a href="/scan">Scan</a></li>
                 <li><a href="/maps">Maps</a></li>
@@ -723,7 +723,7 @@
         <!-- Why Choose Us Section -->
         <section class="why-choose-section">
             <div class="why-choose-image">
-                <img src="img/lady.png" alt="Waste management illustration" style="width: 100%; height: auto;">
+                <img src="{{ url_for('static', filename='lady.png') }}" alt="Waste management illustration" style="width: 100%; height: auto;">
             </div>
             <div class="why-choose-content">
                 <h2 class="why-choose-title">Why Choose Us?</h2>
@@ -740,15 +740,15 @@
                 <div class="steps-container">
                     <div class="step-card">
                         Scan or Upload Disposal Item
-                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                        <img src="{{ url_for('static', filename='arrow.svg') }}" class="step-connector" alt="arrow down">
                     </div>
                     <div class="step-card">
                         Get Proper Disposal Information
-                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                        <img src="{{ url_for('static', filename='arrow.svg') }}" class="step-connector" alt="arrow down">
                     </div>
                     <div class="step-card">
                         Locate Nearest Disposal Bin
-                        <img src="img/arrows.svg" class="step-connector" alt="arrow down">
+                        <img src="{{ url_for('static', filename='arrow.svg') }}" class="step-connector" alt="arrow down">
                     </div>
                     <div class="step-card">
                         Properly Dispose of Waste!
@@ -783,10 +783,11 @@
         <div class="quick-links">
             <h3>Quick Links</h3>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Guide</a></li>
-                <li><a href="#">Scan</a></li>
-                <li><a href="#">Maps</a></li>
+                <li><a href="/homes">Home</a></li>
+                <li><a href="/about"  class="active-nav">About Us</a></li>
+                <li><a href="/scan">Scan</a></li>
+                <li><a href="/maps">Maps</a></li>
+                <li><a href="/guide">Guide</a></li>
             </ul>
         </div>
 

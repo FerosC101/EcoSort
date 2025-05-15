@@ -123,6 +123,9 @@ def home():
 def enter_app():
     return redirect('/scan')
 
+@app.route('/homes')
+def homes():
+    return render_template('home.html')
 @app.route('/about')
 def about():
     return render_template('about.html')
