@@ -183,6 +183,4 @@ We welcome collaboration! To contribute:
 📬 Email: [lenlens.support@example.com](mailto:lenlens.support@example.com)
 © 2025 LenLens Team – All Rights Reserved
 
----
 
-Let me know if you'd like a **PDF version**, **poster**, or **GitHub README markdown version** of this improved documentation!
