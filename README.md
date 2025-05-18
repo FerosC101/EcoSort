@@ -1,6 +1,3 @@
-Here's an improved and polished version of your **LenLens** project documentation. The structure has been enhanced for clarity, professional tone, and visual appeal while preserving all the original content.
-
----
 
 # 🌿 **LenLens: Intelligent Waste Classifier with Geolocation Support**
 
